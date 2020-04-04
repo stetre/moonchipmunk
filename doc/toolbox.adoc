@@ -2,6 +2,24 @@
 [[toolbox]]
 == Toolbox
 
-@@ TODO: document moonchipmunk/toolbox.lua
+MoonChipmunk comes with a 'toolbox' submodule, located in `moonchipmunk/toolbox.lua`.
+This submodule provides the tools that are used in examples and demos for rendering, input
+handling, and more.
 
+In addition to MoonChipmunk itself, the toolbox uses (and thus requires) the following
+libraries from the https://github.com/stetre/moonlibs[MoonLibs collection] collection:
+
+* https://github.com/stetre/moongl[MoonGL]: bindings to the OpenGL API, for graphics rendering.
+* https://github.com/stetre/moonglfw[MoonGLFW]: bindings to GLFW, for window/surface creation and input handling.
+* https://github.com/stetre/moonglmath[MoonGLMATH]: graphics math library.
+* https://github.com/stetre/moonfreetype[MoonFreeType]: bindings to FreeType, for loading fonts.
+* https://github.com/stetre/moonimage[MoonImage]: bindings to stb_image, for loading images.
+* https://github.com/stetre/moonsndfile[MoonSndFile]: bindings to libsndfile, for loading sound samples.
+* https://github.com/stetre/moonal[MoonAL]: bindings to OpenAL, for rendering audio.
+
+(Note that MoonChipmunk itself does not depend on the above libraries. Only the toolbox does,
+and its use in an application is optional).
+
+The examples and demos, together with the comments in the toolbox script, should hopefully
+suffice to show how the tools are meant to be used.
 

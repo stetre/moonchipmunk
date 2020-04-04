@@ -2021,7 +2021,7 @@ know when they will be freed or reused."</em>).</span></p>
 <div class="ulist">
 <ul>
 <li>
-<p><em>bb</em> = <strong>bb_new_for_extents</strong>(<em>center</em>, <em>width</em>, <em>height</em>)<br>
+<p><em>bb</em> = <strong>bb_new_for_extents</strong>(<em>center</em>, <em>halfwidth</em>, <em>halfheight</em>)<br>
 <em>bb</em> = <strong>bb_new_for_circle</strong>(<em>center</em>, <em>radius</em>)<br>
 <em>boolean</em> = <strong>bb_intersects</strong>(<em>bb<sub>1</sub></em>, <em>bb<sub>2</sub></em>)<br>
 <em>boolean</em> = <strong>bb_contains_bb</strong>(<em>bb<sub>1</sub></em>, <em>bb<sub>2</sub></em>)<br>
@@ -2210,7 +2210,46 @@ Enabling this functionality requires MoonGLMATH to be installed.</span></p>
 <h2 id="toolbox">Toolbox</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>@@ TODO: document moonchipmunk/toolbox.lua</p>
+<p>MoonChipmunk comes with a 'toolbox' submodule, located in <code>moonchipmunk/toolbox.lua</code>.
+This submodule provides the tools that are used in examples and demos for rendering, input
+handling, and more.</p>
+</div>
+<div class="paragraph">
+<p>In addition to MoonChipmunk itself, the toolbox uses (and thus requires) the following
+libraries from the <a href="https://github.com/stetre/moonlibs">MoonLibs collection</a> collection:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/stetre/moongl">MoonGL</a>: bindings to the OpenGL API, for graphics rendering.</p>
+</li>
+<li>
+<p><a href="https://github.com/stetre/moonglfw">MoonGLFW</a>: bindings to GLFW, for window/surface creation and input handling.</p>
+</li>
+<li>
+<p><a href="https://github.com/stetre/moonglmath">MoonGLMATH</a>: graphics math library.</p>
+</li>
+<li>
+<p><a href="https://github.com/stetre/moonfreetype">MoonFreeType</a>: bindings to FreeType, for loading fonts.</p>
+</li>
+<li>
+<p><a href="https://github.com/stetre/moonimage">MoonImage</a>: bindings to stb_image, for loading images.</p>
+</li>
+<li>
+<p><a href="https://github.com/stetre/moonsndfile">MoonSndFile</a>: bindings to libsndfile, for loading sound samples.</p>
+</li>
+<li>
+<p><a href="https://github.com/stetre/moonal">MoonAL</a>: bindings to OpenAL, for rendering audio.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>(Note that MoonChipmunk itself does not depend on the above libraries. Only the toolbox does,
+and its use in an application is optional).</p>
+</div>
+<div class="paragraph">
+<p>The examples and demos, together with the comments in the toolbox script, should hopefully
+suffice to show how the tools are meant to be used.</p>
 </div>
 </div>
 </div>

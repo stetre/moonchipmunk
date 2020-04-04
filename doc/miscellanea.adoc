@@ -80,7 +80,7 @@ _a_, _b_, _c_, _d_, _t~x~_, _t~y~_, _s~x~_, _s~y~_, _angle_, _scale_: float.#
 
 [small]#Rfr: https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_b_b_b.html[cpBB].#
 
-* _bb_ = *bb_new_for_extents*(_center_, _width_, _height_) +
+* _bb_ = *bb_new_for_extents*(_center_, _halfwidth_, _halfheight_) +
 _bb_ = *bb_new_for_circle*(_center_, _radius_) +
 _boolean_ = *bb_intersects*(_bb~1~_, _bb~2~_) +
 _boolean_ = *bb_contains_bb*(_bb~1~_, _bb~2~_) +
@@ -136,7 +136,7 @@ _p_, _a_, _b_: <<vec, vec>>.#
 _p_, _a_, _b_: <<vec, vec>>.#
 
 * _boolean_ = *check_axis*(_v~0~_, _v~1~_, _p_, _n_) +
-[small]#Returns _true_ if the point _p_ is behined one of _v~0~_ or _v~1~_ on axis _n_. + @@ UH?
+[small]#Returns _true_ if the point _p_ is behind one of _v~0~_ or _v~1~_ on axis _n_. + @@ UH?
 _v~0~_, _v~1~_, _p_, _n_: <<vec, vec>>.#
 ////
 
