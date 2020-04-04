@@ -1,0 +1,38 @@
+
+== Introduction
+
+MoonChipmunk is an almost one-to-one Lua binding library to the Chipmunk2D physics engine.
+This means that by and large, it is intended to be used as described in the http://chipmunk-physics.net/release/ChipmunkLatest-Docs/[Chipmunk2D Manual] (apart from coding in Lua, of course).
+
+This section gives a brief overview of the binding library, while the details are given 
+in the sections that follow.
+
+MoonChipmunk binds Chipmunk2D *objects* (_space_, _body_, etc.) to Lua userdata, which are 
+returned by the creating functions (_cp.space_new_(&nbsp;), _cp.body_new_(&nbsp;), etc) and are then used to refer to objects in Lua in the same way as one would use Chipmunk2D handles in C.
+
+As a general rule, Chipmunk2D functions are bound to MoonChipmunk functions or methods
+whose names are https://en.wikipedia.org/wiki/Snake_case[snake_case] versions of the original ones.
+
+The functions related to an object type - with the exception of the creating function - are
+bounded to methods of that object (e.g. the C function _cpSpaceSetGravity(space,...)_ becomes the method _space:set_gravity(...)_ in Lua.
+
+Objects are *garbage collected at exit* (which includes on error), and automatically
+deleted at the Chipmunk2D level, so there is no need to explicitly invoke their _free_(&nbsp;) methods at exit for cleanup. 
+
+Apart from at exit, however, objects are not automatically garbage collected 
+footnote:[Objects are anchored to the Lua registry at their creation, so even if the script does not
+have references to an object, a reference always exists on the registry and this prevents the 
+GC to collect it.]
+and one must release them explicitly when needed, e.g. to release resources when the
+application is not exiting and some objects are no longer needed.
+
+Releasing an object causes the automatic (pre) destruction of all its children
+objects, and the invalidation of any reference to the object and to its children.
+footnote:[It is good practice to not leave invalid references to objects around, because
+they prevent the GC to collect the memory associated with the userdata.]
+
+If not stated otherwise, *on error* all MoonChipmunk functions raise a 
+http://www.lua.org/manual/5.3/manual.html#lua_error[Lua error]. 
+If needed, this behaviour can be overridden by wrapping function calls in the standard Lua 
+http://www.lua.org/manual/5.3/manual.html#pdf-pcall[pcall](&nbsp;).
+

@@ -1,0 +1,94 @@
+
+[[datatypes]]
+== Data types
+
+In this document, the _float_ and _integer_ types denote Lua numbers, while other types
+such as _boolean_, _string_, etc denote standard Lua types. Note that _float_
+here just means 'floating point' as opposed to 'integer', and does not imply 
+single-precision (all numbers are actually represented internally using double-precision).
+
+Angles are always expressed in radians.
+
+Vectors, matrices, bounding boxes, and colors are by default represented as Lua arrays containing
+_float_ elements (or arrays of arrays in the case of matrices). The meaning of the elements
+thus depends on their position, as detailed below, and there is no syntactic sugar 
+such as _v.x_ and _v.y_ to access them (unless one enables <<glmath_compat, GLMATH compatibility>>).
+
+A few other ChipmunkD structs are represented as string-indexed Lua tables, also described below.
+
+* [[vec]]
+[small]#*vec* = {_x_, _y_} +
+All elements are floats. +
+(Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_vect.html[cpVect])#
+
+* [[mat]]
+[small]#*mat* = {{_a_, _c_, _tx_}, {_b_, _d_, _ty_}} +
+All elements are floats. +
+(Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_transform.html[cpTransform])#
+
+* [[bb]]
+[small]#*bb* = {_l_, _r_, _b_, _t_} +
+All elements are floats. +
+Beware that the order is different than in _cpBB_ (where the order is _l_, _b_, _r_, _t_). +
+(Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_b_b.html[cpBB])#
+
+* [[color]]
+[small]#*color* = {_r_, _g_, _b_, _a_} +
+All elements are floats, representing normalized color components (i.e. in the range _[0, 1]_). +
+(Rfr: cpSpaceDebugColor)#
+
+* [[shapefilter]]
+[small]#*shapefilter* = { +
+_group_: integer, +
+_categories_: integer, +
+_mask_: integer, +
+} (Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_shape_filter.html[cpShapeFilter])#
+
+* [[pointqueryinfo]]
+[small]#*pointqueryinfo* = { +
+_shape_: <<shape, shape>>, +
+_point_: <<vec, vec>>, +
+_distance_: float, +
+_gradient_: <<vec, vec>>, +
+} (Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_point_query_info.html[cpPointQueryInfo])#
+
+* [[segmentqueryinfo]]
+[small]#*segmentqueryinfo* = { +
+_shape_: <<shape, shape>>, +
+_point_: <<vec, vec>>, +
+_normal_: <<vec, vec>>, +
+_alpha_: float, +
+} (Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_segment_query_info.html[cpSegmentQueryInfo])#
+
+* [[contactpoint]]
+[small]#*contactpoint* = { +
+_a_: <<vec, vec>>, +
+_b_: <<vec, vec>>, +
+_distance_: float, +
+} (Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_contact_point_set.html[cpContactPointSet])#
+
+[[glmath_compat]]
+== GLMATH compatibility
+
+As an option, it is possible to instruct MoonChipmunk to return vectors, matrices, boxes, and colors
+as https://github.com/stetre/moonglmath[MoonGLMATH] types, instead of returning them as plain tables
+(which is the default).
+footnote:[MoonGLMATH types are convenient because they support operators and synctatic sugar, but I
+chose not to impose their use because one may want to use an alternative math library, or none at all.]
+
+In particular, when this functionality is enabled, functions and methods will return values
+of the following MoonGLMATH types: *vec2* instead of <<vec, *vec*>>, *mat2x3* instead of <<mat, *mat*>>, *box2* instead of <<bb, *bb*>>, and *vec4* instead of <<color, *color*>>.
+
+(Notice that for function arguments nothing changes, since the above MoonGLMATH types are compatible
+with the corresponding plain tables used by default, thus they can be used as function arguments in
+any case).
+
+Use the following functions to control GLMATH compatibility:
+
+* *glmath_compat*(_boolean_) +
+[small]#Enables/disables GLMATH compatibility (which by default is disabled). +
+Enabling this functionality requires MoonGLMATH to be installed.#
+
+* _boolean_ = *is_glmath_compat*( ) +
+[small]#Returns _true_ if GLMATH compatibility is enabled.#
+

@@ -1,0 +1,126 @@
+
+[[space]]
+=== Spaces
+
+[small]#Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_space.html[cpSpace].#
+
+[[space_new]]
+* _space_ = *space_new*( ) +
+_space_ = *hasty_space_new*( ) +
+_space_++:++*free*( ) +
+[small]#Create/delete a space.#
+
+[[space_set_threads]]
+* _space_++:++*set_threads*(_n_) +
+_n_ = _space_++:++*get_threads*( ) +
+[small]#For hasty spaces only.#
+
+[[space_step]]
+* _space_++:++*step*(_dt_) +
+_space_++:++*nstep*(_dt_, _n_)
+* _dt_ = _space_++:++*get_current_time_step*( ) +
+[small]#_dt_: float (seconds). +
+_n_: number of steps.#
+
+[[space_is_locked]]
+* _boolean_ = _space_++:++*is_locked*( )
+
+[[space_set_gravity]]
+* _space_++:++*set_gravity*(_gravity_) +
+_space_++:++*set_damping*(_damping_) +
+_gravity_ = _space_++:++*get_gravity*( ) +
+_damping_ = _space_++:++*get_damping*( ) +
+[small]#_gravity_: <<vec, vec>> (defaults to _{0, 0}_). +
+_damping_: float (defaults to _1.0_).#
+
+[[space_set_iterations]]
+* _space_++:++*set_iterations*(_n_) +
+_n_ = _space_++:++*get_iterations*( )
+
+[[space_set_thresholds]]
+* _space_++:++*set_idle_speed_threshold*(_ist_) +
+_space_++:++*set_sleep_time_threshold*(_stt_) +
+_ist_ = _space_++:++*get_idle_speed_threshold*( ) +
+_stt_ = _space_++:++*get_sleep_time_threshold*( ) +
+[small]#_ist_: float (defaults to _0_). +
+_stt_: float (defaults to _math.huge_).#
+
+[[space_set_collision_xxx]]
+* _space_++:++*set_collision_slop*(_cs_) +
+_space_++:++*set_collision_bias*(_cb_) +
+_space_++:++*set_collision_persistence*(_cp_) +
+_cs_ = _space_++:++*get_collision_slop*( ) +
+_cb_ = _space_++:++*get_collision_bias*( ) +
+_cp_ = _space_++:++*get_collision_persistence*( ) +
+[small]#_cs_: float (defaults to _0.1_). +
+_cb_: float (defaults to _(1 - 0.1)^60^_). +
+_cp_: number of frames (defaults to _3_).#
+
+
+[[space_get_static_body]]
+* <<body, _body_>> = _space_++:++*get_static_body*( )
+
+[[space_add_xxx]]
+* <<body, _body_>> = _space_++:++*add_body*(<<body, _body_>>) +
+<<shape, _shape_>> = _space_++:++*add_shape*(<<shape, _shape_>>) +
+<<constraint, _constraint_>> = _space_++:++*add_constraint*(<<constraint, _constraint_>>) +
+_space_++:++*remove_body*(<<body, _body_>>) +
+_space_++:++*remove_shape*(<<shape, _shape_>>) +
+_space_++:++*remove_constraint*(<<constraint, _constraint_>>) +
+_boolean_ = _space_++:++*contains_body*(<<body, _body_>>) +
+_boolean_ = _space_++:++*contains_shape*(<<shape, _shape_>>) +
+_boolean_ = _space_++:++*contains_constraint*(<<constraint, _constraint_>>)
+
+[[space_reindex]]
+* _space_++:++*reindex_static*( ) +
+_space_++:++*reindex_shape*(<<shape, _shape_>>) +
+_space_++:++*reindex_shapes_for_body*(<<body, _body_>>) +
+_space_++:++*use_spatial_hash*(_dim_, _count_)
+
+[[space_each]]
+* _space_++:++*each_body*(_func_) +
+_space_++:++*each_shape*(_func_) +
+_space_++:++*each_constraint*(_func_) +
+[small]#Execute _func_ as *func(space, object)* for each object of the given type.#
+
+* _collision_handler_ = _space_++:++*add_default_collision_handler*( ) +
+_collision_handler_ = _space_++:++*add_collision_handler*(_type~a~_, _type~b~_) +
+_collision_handler_ = _space_++:++*add_wildcard_handler*(_type_) +
+[small]#See <<collision_handler, collision_handler>>.#
+
+[[space_add_post_step_callback]]
+* _space_++:++*add_post_step_callback*(_func_) +
+[small]#The post-step callback is executed as *func(space)*.#
+
+[[space_queries]]
+* <<pointqueryinfo, pointqueryinfo>>|_nil_ = _space_++:++*point_query_nearest*(_point_, _maxdist_, _shapefilter_) +
+<<segmentqueryinfo, segmentqueryinfo>>|_nil_ = _space_++:++*segment_query_first*(_p~start~_, _p~end~_, _radius_, _shapefilter_) +
+_space_++:++*point_query*(_point_, _maxdist_, _shapefilter_, _func_) +
+_space_++:++*segment_query*(_p~start~_, _p~end~_, _radius_, _shapefilter_, _func_) +
+_space_++:++*bb_query*(<<bb, _bb_>>, _shapefilter_, _func_) +
+_space_++:++*shape_query*(<<shape, _shape_>>, _func_) +
+[small]#_point_, _p~start~_, _p~end~_: <<vec, vec>>. +
+_maxdist_, _radius_: float. +
+_shapefilter_: <<shapefilter, shapefilter>>. +
+The _func_ callbacks are executed for each hit shape, as follows: +
+pass:[-] point query: *func(space, shape, _point_, _distance_)* (_point_: <<vec, vec>>, _distance_: float). +
+pass:[-] segment query: *func(space, shape, point, normal, alpha)* (_point_, _normal_: <<vec, vec>>, _alpha_: float). +
+pass:[-] bb query: *func(space, shape)*. +
+pass:[-] shape query: *func(space, shape, _normal_, {points})* ( _normal_: <<vec, vec>>, _{points}_: {<<contactpoint, contactpoint>>}).#
+
+[[space_]]
+* _space_++:++*debug_draw*( ) +
+_space_++:++*set_debug_draw_options*(_draw_circle_, _draw_segment_, _..._) +
+[small]#Arguments for set_debug_draw_options( ): +
+arg1: _space_ (implicit argument). +
+arg2: _draw_circle_: a function, executed as *func(angle, radius, outlinecolor, fillcolor)*. +
+arg3: _draw_segment_: a function, executed as *func(a, b, color)* +
+arg4: _draw_fat_segment_: a function, executed as *func(a, b, radius, outlinecolor, fillcolor)*. +
+arg5: _draw_polygon_: a function, executed as *func({verts}, radius, outlinecolor, fillcolor)* +
+arg6: _draw_dot_: a function, executed as *func(size, pos, color)*. +
+arg7: _color_for_shape_: a function, executed as *color = func(shape)* +
+arg8: _flags_: integer (_cpSpaceDebugDrawFlags_) +
+arg9: _shape_outline_color_: <<color, color>>, +
+arg10: _constraint_color_: <<color, color>>, +
+arg11: _collision_point_color_: <<color, color>>.#
+

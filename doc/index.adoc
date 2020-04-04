@@ -1,0 +1,62 @@
+= MoonChipmunk Reference Manual
+Stefano Trettel
+v0.1, 2020-02-25
+:toc: left
+:toclevels: 3
+:stylesdir: ./
+:stylesheet: colony.css
+:source-highlighter: pygments
+:pygments-style: autumn
+:source-language: lua
+:exampledir: ../examples
+
+image::powered-by-lua.gif[Lua logo, link=http://www.lua.org]
+
+// Macros for trees: {tS} = "   ", {tI} = "│  ", {tH} = "├─ ", {tL} = "└─ "
+:tS: &#8192;&#8192;&#8192;&#8192;
+:tI: &#9474;&#8192;&#8192;&#8192;
+:tH: &#9500;&#9472;&#8192;
+:tL: &#9492;&#9472;&#8192;
+
+include::preface.adoc[]
+include::introduction.adoc[]
+
+== Objects
+
+Listed below are the Lua object types in MoonChipmunk, together with the corresponding
+original types in Chipmunk2D:
+
+[small]#Objects: +
+<<space, space>> _(cpSpace, cpHastySpace)_ +
+<<body, body>> _(cpBody)_ +
+<<shape, shape>> _(cpShape)_ +
+{tH}<<circle, circle>> _(cpCircleShape)_ +
+{tH}<<segment, segment>> _(cpSegmentShape)_ +
+{tL}<<poly, poly>> _(cpPolyShape)_ +
+<<constraint, constraint>> _(cpConstraint)_ +
+{tH}<<pin_joint, pin_joint>> _(cpPinJoint)_ +
+{tH}<<slide_joint, slide_joint>> _(cpSlideJoint)_ +
+{tH}<<pivot_joint, pivot_joint>> _(cpPivotJoint)_ +
+{tH}<<groove_joint, groove_joint>> _(cpGrooveJoint)_ +
+{tH}<<damped_spring, damped_spring>> _(cpDampedSpring)_ +
+{tH}<<damped_rotary_spring, damped_rotary_spring>> _(cpDampedRotarySpring)_ +
+{tH}<<rotary_limit_joint, rotary_limit_joint>> _(cpRotaryLimitJoint)_ +
+{tH}<<ratchet_joint, ratchet_joint>> _(cpRatchetJoint)_ +
+{tH}<<gear_joint, gear_joint>> _(cpGearJoint)_ +
+{tL}<<simple_motor, simple_motor>> _(cpSimpleMotor)_ +
+<<collision_handler>> _(cpCollisionHandler)_ +
+<<arbiter>> _(cpArbiter)_#
+
+
+include::space.adoc[]
+include::body.adoc[]
+include::shape.adoc[]
+include::constraint.adoc[]
+include::collisionhandler.adoc[]
+include::arbiter.adoc[]
+
+include::miscellanea.adoc[]
+include::datatypes.adoc[]
+include::toolbox.adoc[]
+
+

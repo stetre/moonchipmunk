@@ -1,0 +1,67 @@
+
+[[arbiter]]
+=== Arbiters
+
+[small]#Rfr: https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_arbiter.html[cpArbiter].#
+
+From the point of view of the Lua scripts, an arbiter object is automatically created when it
+is received as argument to some callback function, and automatically deleted as soon as the
+function returns.
+
+[[arbiter_set_float]]
+* _arbiter_++:++*set_restitution*(_value_) +
+_arbiter_++:++*set_friction*(_value_) +
+_value_ = _arbiter_++:++*get_restitution*( ) +
+_value_ = _arbiter_++:++*get_friction*( ) +
+_value_ = _arbiter_++:++*total_ke*( ) +
+[small]#_value_: float.#
+
+[[arbiter_set_vec]]
+* _arbiter_++:++*set_surface_velocity*(<<vec, _vec_>>) +
+<<vec, _vec_>> = _arbiter_++:++*get_surface_velocity*( ) +
+<<vec, _vec_>> = _arbiter_++:++*get_normal*( ) +
+<<vec, _vec_>> = _arbiter_++:++*total_impulse*( ) +
+
+[[arbiter_get_boolean]]
+* _boolean_ = _arbiter_++:++*ignore*( ) +
+_boolean_ = _arbiter_++:++*is_first_contact*( ) +
+_boolean_ = _arbiter_++:++*is_removal*( ) +
+
+[[arbiter_get_shapes]]
+* <<shape, _shape~a~_>>, <<shape, _shape~b~_>> = _arbiter_++:++*get_shapes*( ) +
+<<body, _body~a~_>>, <<body, _body~b~_>> = _arbiter_++:++*get_bodies*( ) +
+
+[[arbiter_contact_point_set]]
+* _arbiter_++:++*set_contact_point_set*(_normal_, _{points}_) +
+_normal_, _{points}_ = _arbiter_++:++*get_contact_point_set*( ) +
+[small]#_normal_: <<vec, vec>>. +
+_{points}_: {<<contactpoint, contactpoint>>}.#
+
+[[arbiter_get_points]]
+* _npoints_ = _arbiter_++:++*get_count*( ) +
+_{point~a~}_, _{point~b~}_, _{depth}_ = _arbiter_++:++*get_points*( ) +
+[small]#_{point~a~}_, _{point~b~}_: {<<vec, vec>>}. +
+_{depth}_: {float}.#
+
+[[arbiter_call_wildcard]]
+* _boolean_ = _arbiter_++:++*call_wildcard_begin_a*(_arbiter_, _space_) +
+_boolean_ = _arbiter_++:++*call_wildcard_begin_b*(_arbiter_, _space_) +
+_boolean_ = _arbiter_++:++*call_wildcard_pre_solve_a*(_arbiter_, _space_) +
+_boolean_ = _arbiter_++:++*call_wildcard_pre_solve_b*(_arbiter_, _space_) +
+_arbiter_++:++*call_wildcard_post_solve_a*(_arbiter_, _space_) +
+_arbiter_++:++*call_wildcard_post_solve_b*(_arbiter_, _space_) +
+_arbiter_++:++*call_wildcard_separate_a*(_arbiter_, _space_) +
+_arbiter_++:++*call_wildcard_separate_b*(_arbiter_, _space_) +
+
+[[arbiter_get_user_data]]
+* _value_ = _arbiter_++:++*get_user_index*( ) +
+_arbiter_++:++*set_user_index*(_value_) +
+[small]#Set/get a user-defined integer index associated with the arbiter. +
+This is a limited binding to _cpArbiterSetUserData( )_ and _cpArbiterGetUserData( )_:
+it doesn't allow you to directly associate a generic user data value with the arbiter,
+but you can store it in a table and associate with the arbiter the corresponding index instead. +
+Note that you can't use the _arbiter_ itself to index the user data table, because the arbiter Lua
+object is actually a singleton that is reused every time a _cpArbiter_ is passed to a callback.
+(From the Chipmunk Manual: _"[...] you should never store a reference to an arbiter as you don’t
+know when they will be freed or reused."_).#
+ 

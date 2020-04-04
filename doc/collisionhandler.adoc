@@ -1,0 +1,28 @@
+
+[[collision_handler]]
+=== Collision handlers
+
+[small]#Rfr: https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_collision_handler.html[cpCollisionHandler].#
+
+[[space_add_collision_handler]]
+* _collision_handler_ = _space_++:++*add_default_collision_handler*( ) +
+_collision_handler_ = _space_++:++*add_collision_handler*(_type~a~_, _type~b~_) +
+_collision_handler_ = _space_++:++*add_wildcard_handler*(_type_) +
+[small]#_type_, _type~a~_, _type~b~_: integer (cpCollisionType).#
+
+[[collision_handler_free]]
+* _collision_handler_++:++*free*( ) +
+[small]#Delete _collision_handler_.#
+
+[[collision_handler_xxx]]
+* _type~a~_, _type~b~_ = _collision_handler_++:++*get_types*( ) +
+_collision_handler_++:++*set_begin_func*(_func_) +
+_collision_handler_++:++*set_pre_solve_func*(_func_) +
+_collision_handler_++:++*set_post_solve_func*(_func_) +
+_collision_handler_++:++*set_separate_func*(_func_) +
+[small]#The callbacks are executed as follows: +
+pass:[-] begin: *boolean = func(<<arbiter, arbiter>>, space)*. +
+pass:[-] pre solve: *boolean = func(<<arbiter, arbiter>>, space)*. +
+pass:[-] post solve: *func(<<arbiter, arbiter>>, space)*. +
+pass:[-] separate: *func(<<arbiter, arbiter>>, space)*.#
+

@@ -1,0 +1,123 @@
+
+[[shape]]
+=== Shapes
+
+[small]#Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_shape.html[cpShape].#
+
+[[shape_new]]
+Constructors and specialized methods are available for the following subtypes:
+
+* <<circle, circle>>
+* <<segment, segment>>
+* <<poly, poly>>
+
+Common methods:
+
+[[shape_free]]
+* _shape_++:++*free*( ) +
+[small]#Delete _shape_.#
+
+[[shape_set_body]]
+* _shape_++:++*set_body*(<<body, _body_>>) +
+<<body, _body_>> = _shape_++:++*get_body*( ) +
+<<space, _space_>> = _shape_++:++*get_space*( ) +
+
+[[shape_update]]
+* <<bb, _bb_>> = _shape_++:++*update*(_transform_) +
+[small]#_transform_: <<mat, mat>>.#
+
+[[shape_set_float]]
+* _shape_++:++*set_mass*(_value_) +
+_shape_++:++*set_density*(_value_) +
+_shape_++:++*set_elasticity*(_value_) +
+_shape_++:++*set_friction*(_value_) +
+_value_ = _shape_++:++*get_mass*( ) +
+_value_ = _shape_++:++*get_moment*( ) +
+_value_ = _shape_++:++*get_area*( ) +
+_value_ = _shape_++:++*get_density*( ) +
+_value_ = _shape_++:++*get_elasticity*( ) +
+_value_ = _shape_++:++*get_friction*( ) +
+[small]#_value_: float.#
+
+[[shape_set_vec]]
+* _shape_++:++*set_surface_velocity*(<<vec, _vec_>>) +
+<<vec, _vec_>> = _shape_++:++*get_surface_velocity*( ) +
+<<vec, _vec_>> = _shape_++:++*get_center_of_gravity*( ) +
+
+[[shape_get_bb]]
+* <<bb, _bb_>> = _shape_++:++*get_bb*( ) +
+<<bb, _bb_>> = _shape_++:++*cache_bb*( ) +
+
+[[shape_set_sensor]]
+* _shape_++:++*set_sensor*(_boolean_) +
+_boolean_ = _shape_++:++*get_sensor*( ) +
+
+[[shape_set_filter]]
+* _shape_++:++*set_filter*(<<shapefilter, _shapefilter_>>) +
+<<shapefilter, _shapefilter_>> = _shape_++:++*get_filter*( ) +
+
+[[shape_filter_new]]
+* <<shapefilter, _shapefilter_>> = *shape_filter_new*(_group_, _categories_, _bitmask_) +
+<<shapefilter, _shapefilter_>> = *shape_filter_all*( ) +
+<<shapefilter, _shapefilter_>> = *shape_filter_none*( ) +
+[small]#Shape filter constructor and built-in shape filters (_CP_SHAPE_FILTER_XXX_). +
+Note that a shape filter is a plain Lua table, and thus may also be manually constructed.#
+
+[[shape_set_collision_type]]
+* _shape_++:++*set_collision_type*(value) +
+value = _shape_++:++*get_collision_type*( ) +
+[small]#_value_: integer.#
+
+[[shape_collide]]
+* _normal_|_nil_, _{points}_ = *shapes_collide*(<<shape, _shape_>>, <<shape, _othershape_>>) +
+ _normal_|_nil_, _{points}_ = _shape_++:++*collide*(<<shape, _othershape_>>) +
+[small]#Return _nil_ if shape do not collide. +
+_normal_ = <<vec, vec>>. +
+_{points}_ = {<<contactpoint, contactpoint>>}.#
+
+[[shape_query]]
+* <<pointqueryinfo, _pointqueryinfo_>> = _shape_++:++*point_query*(_point_) +
+<<segmentqueryinfo, _segmentqueryinfo_>>|_nil_ = _shape_++:++*segment_query*(_a_, _b_, _radius_) +
+[small]#_point_, _a_, _b_: <<vec, vec>>.
+_radius_: float.#
+
+[[circle]]
+==== circle
+
+*  <<shape, _shape_>> = *circle_shape_new*(<<body, _body_>>, _radius_, [_offset_]) +
+_shape_++:++*set_radius*(_radius_) _UNSAFE_ +
+_shape_++:++*set_offset*(_offset_) _UNSAFE_ +
+_radius_ = _shape_++:++*get_radius*( ) +
+_offset_ = _shape_++:++*get_offset*( ) +
+[small]#_radius_: float. +
+_offset_: <<vec, vec>> (defaults to _{0, 0}_).#
+
+
+[[segment]]
+==== segment
+
+* <<shape, _shape_>> = *segment_shape_new*(<<body, _body_>>, _a_, _b_, _radius_) +
+_shape_++:++*set_radius*(_radius_) _UNSAFE_ +
+_shape_++:++*set_endpoints*(_a_, _b_) _UNSAFE_ +
+_shape_++:++*set_neighbors*(_prev_, _next_) _UNSAFE_ +
+_radius_ = _shape_++:++*get_radius*( ) +
+_a_, _b_ = _shape_++:++*get_endpoints*( ) +
+_normal_ = _shape_++:++*get_normal*( ) +
+[small]#_a_, _b_, _prev_, _next_, _normal_: <<vec, vec>>. +
+_radius_: float.#
+
+[[poly]]
+==== poly
+
+* <<shape, _shape_>> = *poly_shape_new*(<<body, _body_>>, _{verts}_, _radius_, [_transform_]) +
+<<shape, _shape_>> = *box_shape_new*(<<body, _body_>>, _width_, _height_, _radius_) +
+<<shape, _shape_>> = *box_shape_new*(<<body, _body_>>, <<bb, _bb_>>, _radius_) +
+_shape_++:++*set_radius*(_radius_) _UNSAFE_ +
+_shape_++:++*set_verts*(_{verts}_, [_transform_]) _UNSAFE_ +
+_radius_ = _shape_++:++*get_radius*( ) +
+_{verts}_ = _shape_++:++*get_verts*( ) +
+_nverts_ = _shape_++:++*get_count*( ) +
+[small]#_{verts}_: {<<vec, vec>>}. +
+_radius_, _width_, _height_: float. +
+_transform_: <<mat, mat>> (defaults to the identity transform).#
+

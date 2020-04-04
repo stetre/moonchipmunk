@@ -1,0 +1,194 @@
+
+[[constraint]]
+=== Constraints
+
+[small]#Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_constraint.html[cpConstraint].#
+
+[[constraint_new]]
+Constructors and specialized methods are available for the following subtypes:
+
+* <<pin_joint, pin_joint>>
+* <<slide_joint, slide_joint>>
+* <<pivot_joint, pivot_joint>>
+* <<groove_joint, groove_joint>> 
+* <<damped_spring, damped_spring>>
+* <<damped_rotary_spring, damped_rotary_spring>>
+* <<rotary_limit_joint, rotary_limit_joint>>
+* <<ratchet_joint, ratchet_joint>>
+* <<gear_joint, gear_joint>>
+* <<simple_motor, simple_motor>>
+
+Common methods:
+
+[[constraint_free]]
+* _constraint_++:++*free*( ) +
+[small]#Delete _constraint_.#
+
+[[constraint_get_space]]
+* <<space, _space_>>|_nil_ = _constraint_++:++*get_space*( ) +
+<<body, _body~a~_>>, <<body, _body~b~_>> = _constraint_++:++*get_bodies*( ) +
+<<body, _body~a~_>> = _constraint_++:++*get_body_a*( ) +
+<<body, _body~b~_>> = _constraint_++:++*get_body_b*( ) +
+
+[[constraint_set_float]]
+* _constraint_++:++*set_max_force*(_value_) +
+_constraint_++:++*set_error_bias*(_value_) +
+_constraint_++:++*set_max_bias*(_value_) +
+_value_ = _constraint_++:++*get_max_force*( ) +
+_value_ = _constraint_++:++*get_error_bias*( ) +
+_value_ = _constraint_++:++*get_max_bias*( ) +
+_value_ = _constraint_++:++*get_impulse*( ) +
+[small]#_value_: float.#
+
+[[constraint_set_collide_bodies]]
+* _constraint_++:++*set_collide_bodies*(_boolean_) +
+_boolean_ = _constraint_++:++*get_collide_bodies*( ) +
+
+[[constraint_set_pre_solve_func]]
+* _constraint_++:++*set_pre_solve_func*([_func_]) +
+_constraint_++:++*set_post_solve_func*([_func_]) +
+_func_|_nil_ = _constraint_++:++*get_pre_solve_func*( ) +
+_func_|_nil_ = _constraint_++:++*get_post_solve_func*( ) +
+[small]#Both the pre-solve and post-solve functions are executed as *func(constraint, space)*.#
+
+[[constraint_is]]
+* _boolean_ = _constraint_++:++*is_pin_joint*( ) +
+_boolean_ = _constraint_++:++*is_slide_joint*( ) +
+_boolean_ = _constraint_++:++*is_pivot_joint*( ) +
+_boolean_ = _constraint_++:++*is_groove_joint*( ) +
+_boolean_ = _constraint_++:++*is_damped_spring*( ) +
+_boolean_ = _constraint_++:++*is_damped_rotary_spring*( ) +
+_boolean_ = _constraint_++:++*is_rotary_limit_joint*( ) +
+_boolean_ = _constraint_++:++*is_ratchet_joint*( ) +
+_boolean_ = _constraint_++:++*is_gear_joint*( ) +
+_boolean_ = _constraint_++:++*is_simple_motor*( )
+
+
+[[pin_joint]]
+==== pin_joint
+
+* <<constraint, _constraint_>> = *pin_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _anchor~a~_, _anchor~b~_) +
+_constraint_++:++*set_anchor_a*(_anchor~a~_) +
+_constraint_++:++*set_anchor_b*(_anchor~b~_) +
+_constraint_++:++*set_dist*(_dist_) +
+_anchor~a~_ = _constraint_++:++*get_anchor_a*( ) +
+_anchor~b~_ = _constraint_++:++*get_anchor_b*( ) +
+_dist_ = _constraint_++:++*get_dist*( ) +
+[small]#_anchor~a~_, _anchor~b~_: <<vec, vec>>.#
+
+[[slide_joint]]
+==== slide_joint
+
+* <<constraint, _constraint_>> = *slide_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _anchor~a~_, _anchor~b~_, _min_, _max_) +
+_constraint_++:++*set_anchor_a*(_anchor~a~_) +
+_constraint_++:++*set_anchor_b*(_anchor~b~_) +
+_constraint_++:++*set_min*(_min_) +
+_constraint_++:++*set_max*(_max_) +
+_anchor~a~_ = _constraint_++:++*get_anchor_a*( ) +
+_anchor~b~_ = _constraint_++:++*get_anchor_b*( ) +
+_min_ = _constraint_++:++*get_min*( ) +
+_max_ = _constraint_++:++*get_max*( ) +
+[small]#_anchor~a~_, _anchor~b~_: <<vec, vec>>. +
+_min_, _max_: float.#
+
+[[pivot_joint]]
+==== pivot_joint
+
+* <<constraint, _constraint_>> = *pivot_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _pivot_) +
+<<constraint, _constraint_>> = *pivot_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _anchor~a~_, _anchor~b~_) +
+_constraint_++:++*set_anchor_a*(_anchor~a~_) +
+_constraint_++:++*set_anchor_b*(_anchor~b~_) +
+_anchor~a~_ = _constraint_++:++*get_anchor_a*( ) +
+_anchor~b~_ = _constraint_++:++*get_anchor_b*( ) +
+[small]#_pivot_, _anchor~a~_, _anchor~b~_: <<vec, vec>>.#
+
+[[groove_joint]]
+==== groove_joint
+
+* <<constraint, _constraint_>> = *groove_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _groove~a~_, _groove~b~_, _anchor~b~_) +
+_constraint_++:++*set_groove_a*(_groove~a~_) +
+_constraint_++:++*set_groove_b*(_groove~b~_) +
+_constraint_++:++*set_anchor_b*(_anchor~b~_) +
+_groove~a~_ = _constraint_++:++*get_groove_a*( ) +
+_groove~b~_ = _constraint_++:++*get_groove_b*( ) +
+_anchor~b~_ = _constraint_++:++*get_anchor_b*( ) +
+[small]#_groove~a~_, _groove~b~_, _anchor~b~_: <<vec, vec>>.#
+
+[[damped_spring]]
+==== damped_spring
+
+* <<constraint, _constraint_>> = *damped_spring_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _anchor~a~_, _anchor~b~_, _rest_length_, _stiffness_, _damping_) +
+_constraint_++:++*set_anchor_a*(_anchor~a~_) +
+_constraint_++:++*set_anchor_b*(_anchor~b~_) +
+_constraint_++:++*set_rest_length*(_rest_length_) +
+_constraint_++:++*set_stiffness*(_stiffness_) +
+_constraint_++:++*set_damping*(_damping_) +
+_constraint_++:++*set_spring_force_func*(_func_) +
+_anchor~a~_ = _constraint_++:++*get_anchor_a*( ) +
+_anchor~b~_ = _constraint_++:++*get_anchor_b*( ) +
+_rest_length_ = _constraint_++:++*get_rest_length*( ) +
+_stiffness_ = _constraint_++:++*get_stiffness*( ) +
+_damping_ = _constraint_++:++*get_damping*( ) +
+_func_ = _constraint_++:++*get_spring_force_func*( ) +
+[small]#_anchor~a~_, _anchor~b~_: <<vec, vec>>. +
+_rest_length_, _stiffness_, _damping_: float. +
+The spring force function is called as *force = func(constraint, distance)* (_force_: float).#
+
+[[damped_rotary_spring]]
+==== damped_rotary_spring
+
+* <<constraint, _constraint_>> = *damped_rotary_spring_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _rest_angle_, _stiffness_, _damping_) +
+_constraint_++:++*set_rest_angle*(_rest_angle_) +
+_constraint_++:++*set_stiffness*(_stiffness_) +
+_constraint_++:++*set_damping*(_damping_) +
+_constraint_++:++*set_spring_torque_func*(_func_) +
+_rest_angle_ = _constraint_++:++*get_rest_angle*( ) +
+_stiffness_ = _constraint_++:++*get_stiffness*( ) +
+_damping_ = _constraint_++:++*get_damping*( ) +
+_func_ = _constraint_++:++*get_spring_torque_func*( ) +
+[small]#_rest_angle_, _stiffness_, _damping_: float. +
+The spring torque function is called as *torque = func(constraint, relative_angle)* (_torque_: float).#
+
+[[rotary_limit_joint]]
+==== rotary_limit_joint
+
+* <<constraint, _constraint_>> = *rotary_limit_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _min_, _max_) +
+_constraint_++:++*set_min*(_min_) +
+_constraint_++:++*set_max*(_max_) +
+_min_ = _constraint_++:++*get_min*( ) +
+_max_ = _constraint_++:++*get_max*( ) +
+[small]#_min_, _max_: float.#
+
+
+[[ratchet_joint]]
+==== ratchet_joint
+
+* <<constraint, _constraint_>> = *ratchet_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _phase_, _ratchet_) +
+_constraint_++:++*set_phase*(_phase_) +
+_constraint_++:++*set_ratchet*(_ratchet_) +
+_constraint_++:++*set_angle*(_angle_) +
+_phase_ = _constraint_++:++*get_phase*( ) +
+_ratchet_ = _constraint_++:++*get_ratchet*( ) +
+_angle_ = _constraint_++:++*get_angle*( ) +
+[small]#_phase_, _ratchet_, _angle_: float.#
+
+
+[[gear_joint]]
+==== gear_joint
+
+* <<constraint, _constraint_>> = *gear_joint_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _phase_, _ratio_) +
+_constraint_++:++*set_phase*(_phase_) +
+_constraint_++:++*set_ratio*(_ratio_) +
+_phase_ = _constraint_++:++*get_phase*( ) +
+_ratio_ = _constraint_++:++*get_ratio*( ) +
+[small]#_phase_, _ratio_: float.#
+
+
+[[simple_motor]]
+==== simple_motor
+
+* <<constraint, _constraint_>> = *simple_motor_new*(<<body, _body~a~_>>, <<body, _body~b~_>>, _rate_) +
+_constraint_++:++*set_rate*(_rate_) +
+_rate_ = _constraint_++:++*get_rate*( ) +
+[small]#_rate_: float.#
+

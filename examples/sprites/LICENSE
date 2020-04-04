@@ -1,0 +1,10 @@
+
+The sprite renderer in moonchipmunk/toolbox.lua is based on the 
+Learn OpenGL tutorial by Joey de Vries, at:
+https://learnopengl.com/#!In-Practice/2D-Game/Rendering-Sprites
+
+The texture images contained in this directory are taken from the
+same source, and are covered by the CC-BY 4.0 license
+(https://creativecommons.org/licenses/by/4.0/)
+
+

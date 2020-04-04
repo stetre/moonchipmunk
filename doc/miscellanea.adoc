@@ -1,0 +1,143 @@
+
+[[miscellanea]]
+== Miscellanea
+
+[[float_utils]]
+=== Float utilities
+
+[small]#Rfr: https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__basic_types.html[cp basic types].#
+
+* _value_ = *fclamp*(_f_, _a_, _b_) +
+_value_ = *fclamp01*(_f_) +
+_value_ = *flerp*(_f~1~_, _f~2~_, _f_) +
+_value_ = *flerpconst*(_f~1~_, _f~2~_, _f_) +
+[small]#_value_, _f_, _f~1~_, _f~2~_, _a_, _b_: float.#
+
+[[vec_utils]]
+=== Vector utilities
+
+[small]#Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_vect.html[cpVect].#
+
+* _boolean_ = *veql*(_v~1~_, _v~2~_) +
+_v_ = *vadd*(_v~1~_, _v~2~_) +
+_v_ = *vsub*(_v~1~_, _v~2~_) +
+_v_ = *vneg*(_v~1~_) +
+_v_ = *vmult*(_v~1~_, _v~2~_) +
+_value_ = *vdot*(_v~1~_, _v~2~_) +
+_value_ = *vcross*(_v~1~_, _v~2~_) +
+_v_ = *vperp*(_v~1~_) +
+_v_ = *vrperp*(_v~1~_) +
+_v_ = *vproject*(_v~1~_, _v~2~_) +
+_v_ = *vforangle*(_angle_) +
+_angle_ = *vtoangle*(_v_) +
+_v_ = *vrotate*(_v~1~_, _v~2~_) +
+_v_ = *vunrotate*(_v~1~_, _v~2~_) +
+_value_ = *vlength*(_v~1~_) +
+_value_ = *vlengthsq*(_v~1~_) +
+_value_ = *vdist*(_v~1~_, _v~2~_) +
+_value_ = *vdistsq*(_v~1~_, _v~2~_) +
+_v_ = *vnormalize*(_v~1~_) +
+_v_ = *vclamp*(_v~1~_, _len_) +
+_boolean_ = *vnear*(_v~1~_, _v~2~_, _d_) +
+_v_ = *vlerp*(_v~1~_, _v~2~_, _d_) +
+_v_ = *vslerp*(_v~1~_, _v~2~_, _d_) +
+_v_ = *vlerpconst*(_v~1~_, _v~2~_, _d_) +
+_v_ = *vslerpconst*(_v~1~_, _v~2~_, _d_) +
+[small]#_v_, _v~1~_, _v~2~_: <<vec, vec>>. +
+_value_, _angle_, _len_, _d_: float.#
+
+
+[[mat_utils]]
+=== Transform utilities
+
+[small]#Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_transform.html[cpTransform].#
+
+* _m_ = *transform_identity*( ) +
+_m_ = *transform_new*(_a_, _b_, _c_, _d_, _t~x~_, _t~y~_) +
+_m_ = *transform_new_transpose*(_a_, _c_, _t~x~_, _b_, _d_, _t~y~_) +
+_m_ = *transform_inverse*(_m~1~_) +
+_m_ = *transform_mult*(_m~1~_, _m~2~_) +
+_p_ = *transform_point*(_m_, _p_) +
+_v_ = *transform_vect*(_m_, _v_) +
+_bb_ = *transform_bb*(_m_, _bb_) +
+_m_ = *transform_translate*(_v_) +
+_m_ = *transform_scale*(_s~x~_, _s~y~_) +
+_m_ = *transform_rotate*(_angle_) +
+_m_ = *transform_rigid*(_v_, _angle_) +
+_m_ = *transform_rigid_inverse*(_m~1~_) +
+_m_ = *transform_wrap*(_m~outer~_, _m~inner~_) +
+_m_ = *transform_wrap_inverse*(_m~outer~_, _m~inner~_) +
+_m_ = *transform_ortho*(_bb_) +
+_m_ = *transform_bone_scale*(_v~1~_, _v~2~_) +
+_m_ = *transform_axial_scale*(_axis_, _pivot_, _scale_) +
+[small]#_m_, _m~1~, _m~2~_, _m~outer~_, _m~inner~_: <<mat, mat>>. +
+_p_, _v_, _v~1~_, _v~2~_, _axis_, _pivot_: <<vec, vec>>. +
+_bb_: <<bb, bb>>. +
+_a_, _b_, _c_, _d_, _t~x~_, _t~y~_, _s~x~_, _s~y~_, _angle_, _scale_: float.#
+
+[[bb_utils]]
+=== Bounding box utilities
+
+[small]#Rfr: https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_b_b_b.html[cpBB].#
+
+* _bb_ = *bb_new_for_extents*(_center_, _width_, _height_) +
+_bb_ = *bb_new_for_circle*(_center_, _radius_) +
+_boolean_ = *bb_intersects*(_bb~1~_, _bb~2~_) +
+_boolean_ = *bb_contains_bb*(_bb~1~_, _bb~2~_) +
+_boolean_ = *bb_contains_vect*(_bb_, _v_) +
+_bb_ = *bb_merge*(_bb~1~_, _bb~2~_) +
+_bb_ = *bb_expand*(_bb~1~_, _v_) +
+_center_ = *bb_center*(_bb_) +
+_area_ = *bb_area*(_bb_) +
+_area_ = *bb_merged_area*(_bb~1~_, _bb~2~_) +
+_f_ = *bb_segment_query*(_bb_, _a_, _b_) +
+_boolean_ = *bb_intersects_segment*(_bb_, _a_, _b_) +
+_v_ = *bb_clamp_vect*(_bb_, _v_) +
+_v_ = *bb_wrap_vect*(_bb_, _v_) +
+_bb_ = *bb_offset*(_bb_, _v_) +
+[small]#_bb_, _bb~1~_, _bb~2~_: <<bb, bb>>. +
+_center_, _v_, _a_, _b_: <<vec, vec>>. +
+_width_, _height_, _area_, _f_: float.#
+
+* *march_soft*(_bb_, _xsamples_, _ysamples_, _threshold_, _samplefunc_, _segmentfunc_ ) +
+*march_hard*(_bb_, _xsamples_, _ysamples_, _threshold_, _samplefunc_, _segmentfunc_ ) +
+[small]#_bb_: <<bb, bb>>. +
+_xsamples_, _ysamples_: integer. +
+_threshold_: float. +
+The sample function is executed as *density = func(p)* (_density_: float, _p_: <<vec, vec>>). +
+The segment function is executed as *func(_a_, _b_)* (_a_, _b_: <<vec, vec>>).#
+
+[[moment]]
+=== Moments, areas, etc
+
+[small]#Rfr:https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__misc.html[cp misc].#
+
+* _moment_ = *moment_for_circle*(_mass_, _r~inner~_, _r~outer~_, _offset_) +
+_moment_ = *moment_for_segment*(_mass_, _point~a~_, _point~b~_, _radius_) +
+_moment_ = *moment_for_poly*(_mass_, _{verts}_, _offset_, _radius_) +
+_moment_ = *moment_for_box*(_mass_, _width_, _height_) +
+_moment_ = *moment_for_box*(_mass_, <<bb, _bb_>>) +
+_area_ = *area_for_circle*(_r~inner~_, _r~outer~_) +
+_area_ = *area_for_segment*(_point~a~_, _point~b~_, _radius_) +
+_area_ = *area_for_poly*(_{verts}_, _radius_) +
+_centroid_ = *centroid_for_poly*(_{verts}_) +
+_{verts}_ = *convex_hull*(_{verts}_, _tol_) +
+[small]#_moment_, _area_, _mass_, _r~inner~_, _r~outer~_, _radius_, _width_, _height_, _tol_: float. +
+_point~a~_, _point~b~_, _offset_, _centroid_: <<vec, vec>>. +
+_{verts}_: {<<vec, vec>>}.#
+
+* _p_ = *closest_point_on_segment*(_p_, _a_, _b_) +
+[small]#Returns the point on the segment (_a_, _b_) that is closest to the point _p_. +
+_p_, _a_, _b_: <<vec, vec>>.#
+
+////
+* _boolean_ = *check_point_greater*(_p_, _a_, _b_) +
+[small]#Returns _true_ if the point _p_ is to the left of the segment (_a_, _b_). +
+_p_, _a_, _b_: <<vec, vec>>.#
+
+* _boolean_ = *check_axis*(_v~0~_, _v~1~_, _p_, _n_) +
+[small]#Returns _true_ if the point _p_ is behined one of _v~0~_ or _v~1~_ on axis _n_. + @@ UH?
+_v~0~_, _v~1~_, _p_, _n_: <<vec, vec>>.#
+////
+
+

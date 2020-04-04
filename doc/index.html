@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.5">
+<meta name="author" content="Stefano Trettel">
+<title>MoonChipmunk Reference Manual</title>
+<style>
+/*! normalize.css v2.1.2 | MIT License | git.io/normalize */
+/* ========================================================================== HTML5 display definitions ========================================================================== */
+/** Correct `block` display not defined in IE 8/9. */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
+
+/** Correct `inline-block` display not defined in IE 8/9. */
+audio, canvas, video { display: inline-block; }
+
+/** Prevent modern browsers from displaying `audio` without controls. Remove excess height in iOS 5 devices. */
+audio:not([controls]) { display: none; height: 0; }
+
+/** Address `[hidden]` styling not present in IE 8/9. Hide the `template` element in IE, Safari, and Firefox < 22. */
+[hidden], template { display: none; }
+
+script { display: none !important; }
+
+/* ========================================================================== Base ========================================================================== */
+/** 1. Set default font family to sans-serif. 2. Prevent iOS text size adjust after orientation change, without disabling user zoom. */
+html { font-family: sans-serif; /* 1 */ -ms-text-size-adjust: 100%; /* 2 */ -webkit-text-size-adjust: 100%; /* 2 */ }
+
+/** Remove default margin. */
+body { margin: 0; }
+
+/* ========================================================================== Links ========================================================================== */
+/** Remove the gray background color from active links in IE 10. */
+a { background: transparent; }
+
+/** Address `outline` inconsistency between Chrome and other browsers. */
+a:focus { outline: thin dotted; }
+
+/** Improve readability when focused and also mouse hovered in all browsers. */
+a:active, a:hover { outline: 0; }
+
+/* ========================================================================== Typography ========================================================================== */
+/** Address variable `h1` font-size and margin within `section` and `article` contexts in Firefox 4+, Safari 5, and Chrome. */
+h1 { font-size: 2em; margin: 0.67em 0; }
+
+/** Address styling not present in IE 8/9, Safari 5, and Chrome. */
+abbr[title] { border-bottom: 1px dotted; }
+
+/** Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome. */
+b, strong { font-weight: bold; }
+
+/** Address styling not present in Safari 5 and Chrome. */
+dfn { font-style: italic; }
+
+/** Address differences between Firefox and other browsers. */
+hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; }
+
+/** Address styling not present in IE 8/9. */
+mark { background: #ff0; color: #000; }
+
+/** Correct font family set oddly in Safari 5 and Chrome. */
+code, kbd, pre, samp { font-family: monospace, serif; font-size: 1em; }
+
+/** Improve readability of pre-formatted text in all browsers. */
+pre { white-space: pre-wrap; }
+
+/** Set consistent quote types. */
+q { quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/** Address inconsistent and variable font size in all browsers. */
+small { font-size: 80%; }
+
+/** Prevent `sub` and `sup` affecting `line-height` in all browsers. */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+/* ========================================================================== Embedded content ========================================================================== */
+/** Remove border when inside `a` element in IE 8/9. */
+img { border: 0; }
+
+/** Correct overflow displayed oddly in IE 9. */
+svg:not(:root) { overflow: hidden; }
+
+/* ========================================================================== Figures ========================================================================== */
+/** Address margin not present in IE 8/9 and Safari 5. */
+figure { margin: 0; }
+
+/* ========================================================================== Forms ========================================================================== */
+/** Define consistent border, margin, and padding. */
+fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; }
+
+/** 1. Correct `color` not being inherited in IE 8/9. 2. Remove padding so people aren't caught out if they zero out fieldsets. */
+legend { border: 0; /* 1 */ padding: 0; /* 2 */ }
+
+/** 1. Correct font family not being inherited in all browsers. 2. Correct font size not being inherited in all browsers. 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome. */
+button, input, select, textarea { font-family: inherit; /* 1 */ font-size: 100%; /* 2 */ margin: 0; /* 3 */ }
+
+/** Address Firefox 4+ setting `line-height` on `input` using `!important` in the UA stylesheet. */
+button, input { line-height: normal; }
+
+/** Address inconsistent `text-transform` inheritance for `button` and `select`. All other form control elements do not inherit `text-transform` values. Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+. Correct `select` style inheritance in Firefox 4+ and Opera. */
+button, select { text-transform: none; }
+
+/** 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls. 2. Correct inability to style clickable `input` types in iOS. 3. Improve usability and consistency of cursor style between image-type `input` and others. */
+button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
+
+/** Re-set default cursor for disabled elements. */
+button[disabled], html input[disabled] { cursor: default; }
+
+/** 1. Address box sizing set to `content-box` in IE 8/9. 2. Remove excess padding in IE 8/9. */
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; /* 1 */ padding: 0; /* 2 */ }
+
+/** 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome. 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome (include `-moz` to future-proof). */
+input[type="search"] { -webkit-appearance: textfield; /* 1 */ -moz-box-sizing: content-box; -webkit-box-sizing: content-box; /* 2 */ box-sizing: content-box; }
+
+/** Remove inner padding and search cancel button in Safari 5 and Chrome on OS X. */
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+
+/** Remove inner padding and border in Firefox 4+. */
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+
+/** 1. Remove default vertical scrollbar in IE 8/9. 2. Improve readability and alignment in all browsers. */
+textarea { overflow: auto; /* 1 */ vertical-align: top; /* 2 */ }
+
+/* ========================================================================== Tables ========================================================================== */
+/** Remove most spacing between table cells. */
+table { border-collapse: collapse; border-spacing: 0; }
+
+meta.foundation-mq-small { font-family: "only screen and (min-width: 768px)"; width: 768px; }
+
+meta.foundation-mq-medium { font-family: "only screen and (min-width:1280px)"; width: 1280px; }
+
+meta.foundation-mq-large { font-family: "only screen and (min-width:1440px)"; width: 1440px; }
+
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html, body { font-size: 100%; }
+
+body { background: white; color: #222222; padding: 0; margin: 0; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; line-height: 1; position: relative; cursor: auto; }
+
+a:hover { cursor: pointer; }
+
+img, object, embed { max-width: 100%; height: auto; }
+
+object, embed { height: 100%; }
+
+img { -ms-interpolation-mode: bicubic; }
+
+#map_canvas img, #map_canvas embed, #map_canvas object, .map_canvas img, .map_canvas embed, .map_canvas object { max-width: none !important; }
+
+.left { float: left !important; }
+
+.right { float: right !important; }
+
+.text-left { text-align: left !important; }
+
+.text-right { text-align: right !important; }
+
+.text-center { text-align: center !important; }
+
+.text-justify { text-align: justify !important; }
+
+.hide { display: none; }
+
+.antialiased, body { -webkit-font-smoothing: antialiased; }
+
+img { display: inline-block; vertical-align: middle; }
+
+textarea { height: auto; min-height: 50px; }
+
+select { width: 100%; }
+
+p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.21875em; line-height: 1.6; }
+
+.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { line-height: 1.4; color: #003b6b; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
+
+/* Typography resets */
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6, pre, form, p, blockquote, th, td { margin: 0; padding: 0; direction: ltr; }
+
+/* Default Link Styles */
+a { color: #00579e; text-decoration: none; line-height: inherit; }
+a:hover, a:focus { color: #333333; }
+a img { border: none; }
+
+/* Default paragraph styles */
+p { font-family: Arial, sans-serif; font-weight: normal; font-size: 1em; line-height: 1.6; margin-bottom: 0.75em; text-rendering: optimizeLegibility; }
+p aside { font-size: 0.875em; line-height: 1.35; font-style: italic; }
+
+/* Default header styles */
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { font-family: Arial, sans-serif; font-weight: normal; font-style: normal; color: #7b2d00; text-rendering: optimizeLegibility; margin-top: 0.5em; margin-bottom: 0.5em; line-height: 1.2125em; }
+h1 small, h2 small, h3 small, #toctitle small, .sidebarblock > .content > .title small, h4 small, h5 small, h6 small { font-size: 60%; color: #ff6b15; line-height: 0; }
+
+h1 { font-size: 2.125em; }
+
+h2 { font-size: 1.6875em; }
+
+h3, #toctitle, .sidebarblock > .content > .title { font-size: 1.375em; }
+
+h4 { font-size: 1.125em; }
+
+h5 { font-size: 1.125em; }
+
+h6 { font-size: 1em; }
+
+hr { border: solid #dddddd; border-width: 1px 0 0; clear: both; margin: 1.25em 0 1.1875em; height: 0; }
+
+/* Helpful Typography Defaults */
+em, i { font-style: italic; line-height: inherit; }
+
+strong, b { font-weight: bold; line-height: inherit; }
+
+small { font-size: 60%; line-height: inherit; }
+
+code { font-family: Consolas, "Liberation Mono", Courier, monospace; font-weight: bold; color: #003426; }
+
+/* Lists */
+ul, ol, dl { font-size: 1em; line-height: 1.6; margin-bottom: 0.75em; list-style-position: outside; font-family: Arial, sans-serif; }
+
+ul, ol { margin-left: 1.5em; }
+ul.no-bullet, ol.no-bullet { margin-left: 1.5em; }
+
+/* Unordered Lists */
+ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0; font-size: 1em; /* Override nested font-size change */ }
+ul.square li ul, ul.circle li ul, ul.disc li ul { list-style: inherit; }
+ul.square { list-style-type: square; }
+ul.circle { list-style-type: circle; }
+ul.disc { list-style-type: disc; }
+ul.no-bullet { list-style: none; }
+
+/* Ordered Lists */
+ol li ul, ol li ol { margin-left: 1.25em; margin-bottom: 0; }
+
+/* Definition Lists */
+dl dt { margin-bottom: 0.3em; font-weight: bold; }
+dl dd { margin-bottom: 0.75em; }
+
+/* Abbreviations */
+abbr, acronym { text-transform: uppercase; font-size: 90%; color: black; border-bottom: 1px dotted #dddddd; cursor: help; }
+
+abbr { text-transform: none; }
+
+/* Blockquotes */
+blockquote { margin: 0 0 0.75em; padding: 0.5625em 1.25em 0 1.1875em; border-left: 1px solid #dddddd; }
+blockquote cite { display: block; font-size: 0.8125em; color: #e15200; }
+blockquote cite:before { content: "\2014 \0020"; }
+blockquote cite a, blockquote cite a:visited { color: #e15200; }
+
+blockquote, blockquote p { line-height: 1.6; color: #333333; }
+
+/* Microformats */
+.vcard { display: inline-block; margin: 0 0 1.25em 0; border: 1px solid #dddddd; padding: 0.625em 0.75em; }
+.vcard li { margin: 0; display: block; }
+.vcard .fn { font-weight: bold; font-size: 0.9375em; }
+
+.vevent .summary { font-weight: bold; }
+.vevent abbr { cursor: auto; text-decoration: none; font-weight: bold; border: none; padding: 0 0.0625em; }
+
+@media only screen and (min-width: 768px) { h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { line-height: 1.4; }
+  h1 { font-size: 2.75em; }
+  h2 { font-size: 2.3125em; }
+  h3, #toctitle, .sidebarblock > .content > .title { font-size: 1.6875em; }
+  h4 { font-size: 1.4375em; } }
+/* Tables */
+table { background: white; margin-bottom: 1.25em; border: solid 1px #d8d8ce; }
+table thead, table tfoot { background: -webkit-linear-gradient(top, #add386, #90b66a); font-weight: bold; }
+table thead tr th, table thead tr td, table tfoot tr th, table tfoot tr td { padding: 0.5em 0.625em 0.625em; font-size: inherit; color: white; text-align: left; }
+table tr th, table tr td { padding: 0.5625em 0.625em; font-size: inherit; color: #6d6e71; }
+table tr.even, table tr.alt, table tr:nth-of-type(even) { background: #edf2f2; }
+table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoot tr td { display: table-cell; line-height: 1.4; }
+
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { line-height: 1.4; }
+
+a:hover, a:focus { text-decoration: underline; }
+
+.clearfix:before, .clearfix:after, .float-group:before, .float-group:after { content: " "; display: table; }
+.clearfix:after, .float-group:after { clear: both; }
+
+*:not(pre) > code { font-size: inherit; font-style: normal !important; letter-spacing: 0; padding: 3px 2px 1px 2px; background-color: #eeeeee; border: 1px solid #dddddd; -webkit-border-radius: 0; border-radius: 0; line-height: inherit; }
+
+pre, pre > code { line-height: 1.6; color: black; font-family: Consolas, "Liberation Mono", Courier, monospace; font-weight: normal; }
+
+.keyseq { color: #333333; }
+
+kbd { display: inline-block; color: black; font-size: 0.75em; line-height: 1.4; background-color: #f7f7f7; border: 1px solid #ccc; -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em white inset; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em white inset; margin: -0.15em 0.15em 0 0.15em; padding: 0.2em 0.6em 0.2em 0.5em; vertical-align: middle; white-space: nowrap; }
+
+.keyseq kbd:first-child { margin-left: 0; }
+
+.keyseq kbd:last-child { margin-right: 0; }
+
+.menuseq, .menu { color: black; }
+
+b.button:before, b.button:after { position: relative; top: -1px; font-weight: normal; }
+
+b.button:before { content: "["; padding: 0 3px 0 2px; }
+
+b.button:after { content: "]"; padding: 0 2px 0 3px; }
+
+#header, #content, #footnotes, #footer { width: 100%; margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 0; max-width: 62.5em; *zoom: 1; position: relative; padding-left: 1.5em; padding-right: 1.5em; }
+#header:before, #header:after, #content:before, #content:after, #footnotes:before, #footnotes:after, #footer:before, #footer:after { content: " "; display: table; }
+#header:after, #content:after, #footnotes:after, #footer:after { clear: both; }
+
+#content { margin-top: 1.25em; }
+
+#content:before { content: none; }
+
+#header > h1:first-child { color: #7b2d00; margin-top: 2.25rem; margin-bottom: 0; }
+#header > h1:first-child + #toc { margin-top: 8px; border-top: 1px solid #dddddd; }
+#header > h1:only-child, body.toc2 #header > h1:nth-last-child(2) { border-bottom: 1px solid #dddddd; padding-bottom: 8px; }
+#header .details { border-bottom: 1px solid #dddddd; line-height: 1.45; padding-top: 0.25em; padding-bottom: 0.25em; padding-left: 0.25em; color: #e15200; display: -ms-flexbox; display: -webkit-flex; display: flex; -ms-flex-flow: row wrap; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
+#header .details span:first-child { margin-left: -0.125em; }
+#header .details span.email a { color: #333333; }
+#header .details br { display: none; }
+#header .details br + span:before { content: "\00a0\2013\00a0"; }
+#header .details br + span.author:before { content: "\00a0\22c5\00a0"; color: #333333; }
+#header .details br + span#revremark:before { content: "\00a0|\00a0"; }
+#header #revnumber { text-transform: capitalize; }
+#header #revnumber:after { content: "\00a0"; }
+
+#content > h1:first-child:not([class]) { color: #7b2d00; border-bottom: 1px solid #dddddd; padding-bottom: 8px; margin-top: 0; padding-top: 1rem; margin-bottom: 1.25rem; }
+
+#toc { border-bottom: 0 solid #dddddd; padding-bottom: 0.5em; }
+#toc > ul { margin-left: 0.125em; }
+#toc ul.sectlevel0 > li > a { font-style: italic; }
+#toc ul.sectlevel0 ul.sectlevel1 { margin: 0.5em 0; }
+#toc ul { font-family: Arial, sans-serif; list-style-type: none; }
+#toc a { text-decoration: none; }
+#toc a:active { text-decoration: underline; }
+
+#toctitle { color: #003b6b; font-size: 1.2em; }
+
+@media only screen and (min-width: 768px) { #toctitle { font-size: 1.375em; }
+  body.toc2 { padding-left: 15em; padding-right: 0; }
+  #toc.toc2 { margin-top: 0 !important; background-color: white; position: fixed; width: 15em; left: 0; top: 0; border-right: 1px solid #dddddd; border-top-width: 0 !important; border-bottom-width: 0 !important; z-index: 1000; padding: 1.25em 1em; height: 100%; overflow: auto; }
+  #toc.toc2 #toctitle { margin-top: 0; font-size: 1.2em; }
+  #toc.toc2 > ul { font-size: 0.9em; margin-bottom: 0; }
+  #toc.toc2 ul ul { margin-left: 0; padding-left: 1em; }
+  #toc.toc2 ul.sectlevel0 ul.sectlevel1 { padding-left: 0; margin-top: 0.5em; margin-bottom: 0.5em; }
+  body.toc2.toc-right { padding-left: 0; padding-right: 15em; }
+  body.toc2.toc-right #toc.toc2 { border-right-width: 0; border-left: 1px solid #dddddd; left: auto; right: 0; } }
+@media only screen and (min-width: 1280px) { body.toc2 { padding-left: 20em; padding-right: 0; }
+  #toc.toc2 { width: 20em; }
+  #toc.toc2 #toctitle { font-size: 1.375em; }
+  #toc.toc2 > ul { font-size: 0.95em; }
+  #toc.toc2 ul ul { padding-left: 1.25em; }
+  body.toc2.toc-right { padding-left: 0; padding-right: 20em; } }
+#content #toc { border-style: solid; border-width: 1px; border-color: #e6e6e6; margin-bottom: 1.25em; padding: 1.25em; background: white; -webkit-border-radius: 0; border-radius: 0; }
+#content #toc > :first-child { margin-top: 0; }
+#content #toc > :last-child { margin-bottom: 0; }
+
+#footer { max-width: 100%; background-color: none; padding: 1.25em; }
+
+#footer-text { color: black; line-height: 1.44; }
+
+.sect1 { padding-bottom: 0.625em; }
+
+@media only screen and (min-width: 768px) { .sect1 { padding-bottom: 1.25em; } }
+.sect1 + .sect1 { border-top: 0 solid #dddddd; }
+
+#content h1 > a.anchor, h2 > a.anchor, h3 > a.anchor, #toctitle > a.anchor, .sidebarblock > .content > .title > a.anchor, h4 > a.anchor, h5 > a.anchor, h6 > a.anchor { position: absolute; z-index: 1001; width: 1.5ex; margin-left: -1.5ex; display: block; text-decoration: none !important; visibility: hidden; text-align: center; font-weight: normal; }
+#content h1 > a.anchor:before, h2 > a.anchor:before, h3 > a.anchor:before, #toctitle > a.anchor:before, .sidebarblock > .content > .title > a.anchor:before, h4 > a.anchor:before, h5 > a.anchor:before, h6 > a.anchor:before { content: "\00A7"; font-size: 0.85em; display: block; padding-top: 0.1em; }
+#content h1:hover > a.anchor, #content h1 > a.anchor:hover, h2:hover > a.anchor, h2 > a.anchor:hover, h3:hover > a.anchor, #toctitle:hover > a.anchor, .sidebarblock > .content > .title:hover > a.anchor, h3 > a.anchor:hover, #toctitle > a.anchor:hover, .sidebarblock > .content > .title > a.anchor:hover, h4:hover > a.anchor, h4 > a.anchor:hover, h5:hover > a.anchor, h5 > a.anchor:hover, h6:hover > a.anchor, h6 > a.anchor:hover { visibility: visible; }
+#content h1 > a.link, h2 > a.link, h3 > a.link, #toctitle > a.link, .sidebarblock > .content > .title > a.link, h4 > a.link, h5 > a.link, h6 > a.link { color: #7b2d00; text-decoration: none; }
+#content h1 > a.link:hover, h2 > a.link:hover, h3 > a.link:hover, #toctitle > a.link:hover, .sidebarblock > .content > .title > a.link:hover, h4 > a.link:hover, h5 > a.link:hover, h6 > a.link:hover { color: #622400; }
+
+.audioblock, .imageblock, .literalblock, .listingblock, .stemblock, .videoblock { margin-bottom: 1.25em; }
+
+.admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { text-rendering: optimizeLegibility; text-align: left; }
+
+table.tableblock > caption.title { white-space: nowrap; overflow: visible; max-width: 0; }
+
+.paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { color: #7b2d00; }
+
+table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-size: inherit; }
+
+.admonitionblock > table { border-collapse: separate; border: 0; background: none; width: 100%; }
+.admonitionblock > table td.icon { text-align: center; width: 80px; }
+.admonitionblock > table td.icon img { max-width: none; }
+.admonitionblock > table td.icon .title { font-weight: bold; font-family: Arial, sans-serif; text-transform: uppercase; }
+.admonitionblock > table td.content { padding-left: 1.125em; padding-right: 1.25em; border-left: 1px solid #dddddd; color: #e15200; }
+.admonitionblock > table td.content > :last-child > :last-child { margin-bottom: 0; }
+
+.exampleblock > .content { border-style: solid; border-width: 1px; border-color: #e6e6e6; margin-bottom: 1.25em; padding: 1.25em; background: white; -webkit-border-radius: 0; border-radius: 0; }
+.exampleblock > .content > :first-child { margin-top: 0; }
+.exampleblock > .content > :last-child { margin-bottom: 0; }
+
+.sidebarblock { border-style: solid; border-width: 1px; border-color: #e6e6e6; margin-bottom: 1.25em; padding: 1.25em; background: white; -webkit-border-radius: 0; border-radius: 0; }
+.sidebarblock > :first-child { margin-top: 0; }
+.sidebarblock > :last-child { margin-bottom: 0; }
+.sidebarblock > .content > .title { color: #003b6b; margin-top: 0; }
+
+.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child { margin-bottom: 0; }
+
+.literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint { background: #eeeeee; }
+.sidebarblock .literalblock pre, .sidebarblock .listingblock pre:not(.highlight), .sidebarblock .listingblock pre[class="highlight"], .sidebarblock .listingblock pre[class^="highlight "], .sidebarblock .listingblock pre.CodeRay, .sidebarblock .listingblock pre.prettyprint { background: #f2f1f1; }
+
+.literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { border: 1px dashed #666666; -webkit-border-radius: 0; border-radius: 0; word-wrap: break-word; padding: 1.25em 1.5625em 1.125em 1.5625em; font-size: 0.8125em; }
+.literalblock pre.nowrap, .literalblock pre[class].nowrap, .listingblock pre.nowrap, .listingblock pre[class].nowrap { overflow-x: auto; white-space: pre; word-wrap: normal; }
+@media only screen and (min-width: 768px) { .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { font-size: 0.90625em; } }
+@media only screen and (min-width: 1280px) { .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] { font-size: 1em; } }
+
+.literalblock.output pre { color: #eeeeee; background-color: black; }
+
+.listingblock pre.highlightjs { padding: 0; }
+.listingblock pre.highlightjs > code { padding: 1.25em 1.5625em 1.125em 1.5625em; -webkit-border-radius: 0; border-radius: 0; }
+
+.listingblock > .content { position: relative; }
+
+.listingblock code[data-lang]:before { display: none; content: attr(data-lang); position: absolute; font-size: 0.75em; top: 0.425rem; right: 0.5rem; line-height: 1; text-transform: uppercase; color: #999; }
+
+.listingblock:hover code[data-lang]:before { display: block; }
+
+.listingblock.terminal pre .command:before { content: attr(data-prompt); padding-right: 0.5em; color: #999; }
+
+.listingblock.terminal pre .command:not([data-prompt]):before { content: "$"; }
+
+table.pyhltable { border-collapse: separate; border: 0; margin-bottom: 0; background: none; }
+
+table.pyhltable td { vertical-align: top; padding-top: 0; padding-bottom: 0; }
+
+table.pyhltable td.code { padding-left: .75em; padding-right: 0; }
+
+pre.pygments .lineno, table.pyhltable td:not(.code) { color: #999; padding-left: 0; padding-right: .5em; border-right: 1px solid #dddddd; }
+
+pre.pygments .lineno { display: inline-block; margin-right: .25em; }
+
+table.pyhltable .linenodiv { background: none !important; padding-right: 0 !important; }
+
+.quoteblock { margin: 0 1em 0.75em 1.5em; display: table; }
+.quoteblock > .title { margin-left: -1.5em; margin-bottom: 0.75em; }
+.quoteblock blockquote, .quoteblock blockquote p { color: #333333; font-size: 1.15rem; line-height: 1.75; word-spacing: 0.1em; letter-spacing: 0; font-style: italic; text-align: justify; }
+.quoteblock blockquote { margin: 0; padding: 0; border: 0; }
+.quoteblock blockquote:before { content: "\201c"; float: left; font-size: 2.75em; font-weight: bold; line-height: 0.6em; margin-left: -0.6em; color: #003b6b; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+.quoteblock blockquote > .paragraph:last-child p { margin-bottom: 0; }
+.quoteblock .attribution { margin-top: 0.5em; margin-right: 0.5ex; text-align: right; }
+.quoteblock .quoteblock { margin-left: 0; margin-right: 0; padding: 0.5em 0; border-left: 3px solid #e15200; }
+.quoteblock .quoteblock blockquote { padding: 0 0 0 0.75em; }
+.quoteblock .quoteblock blockquote:before { display: none; }
+
+.verseblock { margin: 0 1em 0.75em 1em; }
+.verseblock pre { font-family: "Open Sans", "DejaVu Sans", sans; font-size: 1.15rem; color: #333333; font-weight: 300; text-rendering: optimizeLegibility; }
+.verseblock pre strong { font-weight: 400; }
+.verseblock .attribution { margin-top: 1.25rem; margin-left: 0.5ex; }
+
+.quoteblock .attribution, .verseblock .attribution { font-size: 0.8125em; line-height: 1.45; font-style: italic; }
+.quoteblock .attribution br, .verseblock .attribution br { display: none; }
+.quoteblock .attribution cite, .verseblock .attribution cite { display: block; letter-spacing: -0.05em; color: #e15200; }
+
+.quoteblock.abstract { margin: 0 0 0.75em 0; display: block; }
+.quoteblock.abstract blockquote, .quoteblock.abstract blockquote p { text-align: left; word-spacing: 0; }
+.quoteblock.abstract blockquote:before, .quoteblock.abstract blockquote p:first-of-type:before { display: none; }
+
+table.tableblock { max-width: 100%; border-collapse: separate; }
+table.tableblock td > .paragraph:last-child p > p:last-child, table.tableblock th > p:last-child, table.tableblock td > p:last-child { margin-bottom: 0; }
+
+table.spread { width: 100%; }
+
+table.tableblock, th.tableblock, td.tableblock { border: 0 solid #d8d8ce; }
+
+table.grid-all th.tableblock, table.grid-all td.tableblock { border-width: 0 1px 1px 0; }
+
+table.grid-all tfoot > tr > th.tableblock, table.grid-all tfoot > tr > td.tableblock { border-width: 1px 1px 0 0; }
+
+table.grid-cols th.tableblock, table.grid-cols td.tableblock { border-width: 0 1px 0 0; }
+
+table.grid-all * > tr > .tableblock:last-child, table.grid-cols * > tr > .tableblock:last-child { border-right-width: 0; }
+
+table.grid-rows th.tableblock, table.grid-rows td.tableblock { border-width: 0 0 1px 0; }
+
+table.grid-all tbody > tr:last-child > th.tableblock, table.grid-all tbody > tr:last-child > td.tableblock, table.grid-all thead:last-child > tr > th.tableblock, table.grid-rows tbody > tr:last-child > th.tableblock, table.grid-rows tbody > tr:last-child > td.tableblock, table.grid-rows thead:last-child > tr > th.tableblock { border-bottom-width: 0; }
+
+table.grid-rows tfoot > tr > th.tableblock, table.grid-rows tfoot > tr > td.tableblock { border-width: 1px 0 0 0; }
+
+table.frame-all { border-width: 1px; }
+
+table.frame-sides { border-width: 0 1px; }
+
+table.frame-topbot { border-width: 1px 0; }
+
+th.halign-left, td.halign-left { text-align: left; }
+
+th.halign-right, td.halign-right { text-align: right; }
+
+th.halign-center, td.halign-center { text-align: center; }
+
+th.valign-top, td.valign-top { vertical-align: top; }
+
+th.valign-bottom, td.valign-bottom { vertical-align: bottom; }
+
+th.valign-middle, td.valign-middle { vertical-align: middle; }
+
+table thead th, table tfoot th { font-weight: bold; }
+
+tbody tr th { display: table-cell; line-height: 1.4; background: -webkit-linear-gradient(top, #add386, #90b66a); }
+
+tbody tr th, tbody tr th p, tfoot tr th, tfoot tr th p { color: white; font-weight: bold; }
+
+p.tableblock > code:only-child { background: none; padding: 0; }
+
+p.tableblock { font-size: 1em; }
+
+td > div.verse { white-space: pre; }
+
+ol { margin-left: 1.75em; }
+
+ul li ol { margin-left: 1.5em; }
+
+dl dd { margin-left: 1.125em; }
+
+dl dd:last-child, dl dd:last-child > :last-child { margin-bottom: 0; }
+
+ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .ulist, .ulist .olist, .olist .ulist { margin-bottom: 0.375em; }
+
+ul.unstyled, ol.unnumbered, ul.checklist, ul.none { list-style-type: none; }
+
+ul.unstyled, ol.unnumbered, ul.checklist { margin-left: 0.625em; }
+
+ul.checklist li > p:first-child > .fa-square-o:first-child, ul.checklist li > p:first-child > .fa-check-square-o:first-child { width: 1em; font-size: 0.85em; }
+
+ul.checklist li > p:first-child > input[type="checkbox"]:first-child { width: 1em; position: relative; top: 1px; }
+
+ul.inline { margin: 0 auto 0.375em auto; margin-left: -1.375em; margin-right: 0; padding: 0; list-style: none; overflow: hidden; }
+ul.inline > li { list-style: none; float: left; margin-left: 1.375em; display: block; }
+ul.inline > li > * { display: block; }
+
+.unstyled dl dt { font-weight: normal; font-style: normal; }
+
+ol.arabic { list-style-type: decimal; }
+
+ol.decimal { list-style-type: decimal-leading-zero; }
+
+ol.loweralpha { list-style-type: lower-alpha; }
+
+ol.upperalpha { list-style-type: upper-alpha; }
+
+ol.lowerroman { list-style-type: lower-roman; }
+
+ol.upperroman { list-style-type: upper-roman; }
+
+ol.lowergreek { list-style-type: lower-greek; }
+
+.hdlist > table, .colist > table { border: 0; background: none; }
+.hdlist > table > tbody > tr, .colist > table > tbody > tr { background: none; }
+
+td.hdlist1 { padding-right: .75em; font-weight: bold; }
+
+td.hdlist1, td.hdlist2 { vertical-align: top; }
+
+.literalblock + .colist, .listingblock + .colist { margin-top: -0.5em; }
+
+.colist > table tr > td:first-of-type { padding: 0 0.75em; line-height: 1; }
+.colist > table tr > td:last-of-type { padding: 0.25em 0; }
+
+.thumb, .th { line-height: 0; display: inline-block; border: solid 4px white; -webkit-box-shadow: 0 0 0 1px #dddddd; box-shadow: 0 0 0 1px #dddddd; }
+
+.imageblock.left, .imageblock[style*="float: left"] { margin: 0.25em 0.625em 1.25em 0; }
+.imageblock.right, .imageblock[style*="float: right"] { margin: 0.25em 0 1.25em 0.625em; }
+.imageblock > .title { margin-bottom: 0; }
+.imageblock.thumb, .imageblock.th { border-width: 6px; }
+.imageblock.thumb > .title, .imageblock.th > .title { padding: 0 0.125em; }
+
+.image.left, .image.right { margin-top: 0.25em; margin-bottom: 0.25em; display: inline-block; line-height: 0; }
+.image.left { margin-right: 0.625em; }
+.image.right { margin-left: 0.625em; }
+
+a.image { text-decoration: none; }
+
+span.footnote, span.footnoteref { vertical-align: super; font-size: 0.875em; }
+span.footnote a, span.footnoteref a { text-decoration: none; }
+span.footnote a:active, span.footnoteref a:active { text-decoration: underline; }
+
+#footnotes { padding-top: 0.75em; padding-bottom: 0.75em; margin-bottom: 0.625em; }
+#footnotes hr { width: 20%; min-width: 6.25em; margin: -.25em 0 .75em 0; border-width: 1px 0 0 0; }
+#footnotes .footnote { padding: 0 0.375em; line-height: 1.3; font-size: 0.875em; margin-left: 1.2em; text-indent: -1.2em; margin-bottom: .2em; }
+#footnotes .footnote a:first-of-type { font-weight: bold; text-decoration: none; }
+#footnotes .footnote:last-of-type { margin-bottom: 0; }
+
+#content #footnotes { margin-top: -0.625em; margin-bottom: 0; padding: 0.75em 0; }
+
+.gist .file-data > table { border: 0; background: #fff; width: 100%; margin-bottom: 0; }
+.gist .file-data > table td.line-data { width: 99%; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+.big { font-size: larger; }
+
+.small { font-size: smaller; }
+
+.underline { text-decoration: underline; }
+
+.overline { text-decoration: overline; }
+
+.line-through { text-decoration: line-through; }
+
+.aqua { color: #00bfbf; }
+
+.aqua-background { background-color: #00fafa; }
+
+.black { color: black; }
+
+.black-background { background-color: black; }
+
+.blue { color: #0000bf; }
+
+.blue-background { background-color: #0000fa; }
+
+.fuchsia { color: #bf00bf; }
+
+.fuchsia-background { background-color: #fa00fa; }
+
+.gray { color: #606060; }
+
+.gray-background { background-color: #7d7d7d; }
+
+.green { color: #006000; }
+
+.green-background { background-color: #007d00; }
+
+.lime { color: #00bf00; }
+
+.lime-background { background-color: #00fa00; }
+
+.maroon { color: #600000; }
+
+.maroon-background { background-color: #7d0000; }
+
+.navy { color: #000060; }
+
+.navy-background { background-color: #00007d; }
+
+.olive { color: #606000; }
+
+.olive-background { background-color: #7d7d00; }
+
+.purple { color: #600060; }
+
+.purple-background { background-color: #7d007d; }
+
+.red { color: #bf0000; }
+
+.red-background { background-color: #fa0000; }
+
+.silver { color: #909090; }
+
+.silver-background { background-color: #bcbcbc; }
+
+.teal { color: #006060; }
+
+.teal-background { background-color: #007d7d; }
+
+.white { color: #bfbfbf; }
+
+.white-background { background-color: #fafafa; }
+
+.yellow { color: #bfbf00; }
+
+.yellow-background { background-color: #fafa00; }
+
+span.icon > .fa { cursor: default; }
+
+.admonitionblock td.icon [class^="fa icon-"] { font-size: 2.5em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); cursor: default; }
+.admonitionblock td.icon .icon-note:before { content: "\f05a"; color: #004176; }
+.admonitionblock td.icon .icon-tip:before { content: "\f0eb"; text-shadow: 1px 1px 2px rgba(155, 155, 0, 0.8); color: #111; }
+.admonitionblock td.icon .icon-warning:before { content: "\f071"; color: #bf6900; }
+.admonitionblock td.icon .icon-caution:before { content: "\f06d"; color: #bf3400; }
+.admonitionblock td.icon .icon-important:before { content: "\f06a"; color: #bf0000; }
+
+.conum[data-value] { display: inline-block; color: #fff !important; background-color: black; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; font-size: 0.75em; width: 1.67em; height: 1.67em; line-height: 1.67em; font-family: "Open Sans", "DejaVu Sans", sans-serif; font-style: normal; font-weight: bold; }
+.conum[data-value] * { color: #fff !important; }
+.conum[data-value] + b { display: none; }
+.conum[data-value]:after { content: attr(data-value); }
+pre .conum[data-value] { position: relative; top: -0.125em; }
+
+b.conum * { color: inherit !important; }
+
+.conum:not([data-value]):empty { display: none; }
+
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { border-bottom: 1px solid #dddddd; }
+
+.sect1 { padding-bottom: 0; }
+
+#toctitle { color: #00406F; font-weight: normal; margin-top: 1.5em; }
+
+.sidebarblock { border-color: #aaa; }
+
+code { -webkit-border-radius: 4px; border-radius: 4px; }
+
+p.tableblock.header { color: #6d6e71; }
+
+.literalblock pre, .listingblock pre { background: #eeeeee; }
+
+</style>
+<style>
+.listingblock .pygments .hll { background-color: #ffffcc }
+.listingblock .pygments, .listingblock .pygments code { background: #ffffff; }
+.listingblock .pygments .tok-c { color: #aaaaaa; font-style: italic } /* Comment */
+.listingblock .pygments .tok-err { color: #FF0000; background-color: #FFAAAA } /* Error */
+.listingblock .pygments .tok-k { color: #0000aa } /* Keyword */
+.listingblock .pygments .tok-ch { color: #aaaaaa; font-style: italic } /* Comment.Hashbang */
+.listingblock .pygments .tok-cm { color: #aaaaaa; font-style: italic } /* Comment.Multiline */
+.listingblock .pygments .tok-cp { color: #4c8317 } /* Comment.Preproc */
+.listingblock .pygments .tok-cpf { color: #aaaaaa; font-style: italic } /* Comment.PreprocFile */
+.listingblock .pygments .tok-c1 { color: #aaaaaa; font-style: italic } /* Comment.Single */
+.listingblock .pygments .tok-cs { color: #0000aa; font-style: italic } /* Comment.Special */
+.listingblock .pygments .tok-gd { color: #aa0000 } /* Generic.Deleted */
+.listingblock .pygments .tok-ge { font-style: italic } /* Generic.Emph */
+.listingblock .pygments .tok-gr { color: #aa0000 } /* Generic.Error */
+.listingblock .pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.listingblock .pygments .tok-gi { color: #00aa00 } /* Generic.Inserted */
+.listingblock .pygments .tok-go { color: #888888 } /* Generic.Output */
+.listingblock .pygments .tok-gp { color: #555555 } /* Generic.Prompt */
+.listingblock .pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+.listingblock .pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.listingblock .pygments .tok-gt { color: #aa0000 } /* Generic.Traceback */
+.listingblock .pygments .tok-kc { color: #0000aa } /* Keyword.Constant */
+.listingblock .pygments .tok-kd { color: #0000aa } /* Keyword.Declaration */
+.listingblock .pygments .tok-kn { color: #0000aa } /* Keyword.Namespace */
+.listingblock .pygments .tok-kp { color: #0000aa } /* Keyword.Pseudo */
+.listingblock .pygments .tok-kr { color: #0000aa } /* Keyword.Reserved */
+.listingblock .pygments .tok-kt { color: #00aaaa } /* Keyword.Type */
+.listingblock .pygments .tok-m { color: #009999 } /* Literal.Number */
+.listingblock .pygments .tok-s { color: #aa5500 } /* Literal.String */
+.listingblock .pygments .tok-na { color: #1e90ff } /* Name.Attribute */
+.listingblock .pygments .tok-nb { color: #00aaaa } /* Name.Builtin */
+.listingblock .pygments .tok-nc { color: #00aa00; text-decoration: underline } /* Name.Class */
+.listingblock .pygments .tok-no { color: #aa0000 } /* Name.Constant */
+.listingblock .pygments .tok-nd { color: #888888 } /* Name.Decorator */
+.listingblock .pygments .tok-ni { color: #880000; font-weight: bold } /* Name.Entity */
+.listingblock .pygments .tok-nf { color: #00aa00 } /* Name.Function */
+.listingblock .pygments .tok-nn { color: #00aaaa; text-decoration: underline } /* Name.Namespace */
+.listingblock .pygments .tok-nt { color: #1e90ff; font-weight: bold } /* Name.Tag */
+.listingblock .pygments .tok-nv { color: #aa0000 } /* Name.Variable */
+.listingblock .pygments .tok-ow { color: #0000aa } /* Operator.Word */
+.listingblock .pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+.listingblock .pygments .tok-mb { color: #009999 } /* Literal.Number.Bin */
+.listingblock .pygments .tok-mf { color: #009999 } /* Literal.Number.Float */
+.listingblock .pygments .tok-mh { color: #009999 } /* Literal.Number.Hex */
+.listingblock .pygments .tok-mi { color: #009999 } /* Literal.Number.Integer */
+.listingblock .pygments .tok-mo { color: #009999 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sa { color: #aa5500 } /* Literal.String.Affix */
+.listingblock .pygments .tok-sb { color: #aa5500 } /* Literal.String.Backtick */
+.listingblock .pygments .tok-sc { color: #aa5500 } /* Literal.String.Char */
+.listingblock .pygments .tok-dl { color: #aa5500 } /* Literal.String.Delimiter */
+.listingblock .pygments .tok-sd { color: #aa5500 } /* Literal.String.Doc */
+.listingblock .pygments .tok-s2 { color: #aa5500 } /* Literal.String.Double */
+.listingblock .pygments .tok-se { color: #aa5500 } /* Literal.String.Escape */
+.listingblock .pygments .tok-sh { color: #aa5500 } /* Literal.String.Heredoc */
+.listingblock .pygments .tok-si { color: #aa5500 } /* Literal.String.Interpol */
+.listingblock .pygments .tok-sx { color: #aa5500 } /* Literal.String.Other */
+.listingblock .pygments .tok-sr { color: #009999 } /* Literal.String.Regex */
+.listingblock .pygments .tok-s1 { color: #aa5500 } /* Literal.String.Single */
+.listingblock .pygments .tok-ss { color: #0000aa } /* Literal.String.Symbol */
+.listingblock .pygments .tok-bp { color: #00aaaa } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-fm { color: #00aa00 } /* Name.Function.Magic */
+.listingblock .pygments .tok-vc { color: #aa0000 } /* Name.Variable.Class */
+.listingblock .pygments .tok-vg { color: #aa0000 } /* Name.Variable.Global */
+.listingblock .pygments .tok-vi { color: #aa0000 } /* Name.Variable.Instance */
+.listingblock .pygments .tok-vm { color: #aa0000 } /* Name.Variable.Magic */
+.listingblock .pygments .tok-il { color: #009999 } /* Literal.Number.Integer.Long */
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>MoonChipmunk Reference Manual</h1>
+<div class="details">
+<span id="author" class="author">Stefano Trettel</span><br>
+<span id="revnumber">version 0.1,</span>
+<span id="revdate">2020-02-25</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_preface">Preface</a>
+<ul class="sectlevel2">
+<li><a href="#_getting_and_installing">Getting and installing</a></li>
+<li><a href="#_module_organization">Module organization</a></li>
+<li><a href="#_examples">Examples</a></li>
+<li><a href="#_license">License</a></li>
+<li><a href="#see-also">See also</a></li>
+</ul>
+</li>
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_objects">Objects</a>
+<ul class="sectlevel2">
+<li><a href="#space">Spaces</a></li>
+<li><a href="#body">Rigid bodies</a></li>
+<li><a href="#shape">Shapes</a>
+<ul class="sectlevel3">
+<li><a href="#circle">circle</a></li>
+<li><a href="#segment">segment</a></li>
+<li><a href="#poly">poly</a></li>
+</ul>
+</li>
+<li><a href="#constraint">Constraints</a>
+<ul class="sectlevel3">
+<li><a href="#pin_joint">pin_joint</a></li>
+<li><a href="#slide_joint">slide_joint</a></li>
+<li><a href="#pivot_joint">pivot_joint</a></li>
+<li><a href="#groove_joint">groove_joint</a></li>
+<li><a href="#damped_spring">damped_spring</a></li>
+<li><a href="#damped_rotary_spring">damped_rotary_spring</a></li>
+<li><a href="#rotary_limit_joint">rotary_limit_joint</a></li>
+<li><a href="#ratchet_joint">ratchet_joint</a></li>
+<li><a href="#gear_joint">gear_joint</a></li>
+<li><a href="#simple_motor">simple_motor</a></li>
+</ul>
+</li>
+<li><a href="#collision_handler">Collision handlers</a></li>
+<li><a href="#arbiter">Arbiters</a></li>
+</ul>
+</li>
+<li><a href="#miscellanea">Miscellanea</a>
+<ul class="sectlevel2">
+<li><a href="#float_utils">Float utilities</a></li>
+<li><a href="#vec_utils">Vector utilities</a></li>
+<li><a href="#mat_utils">Transform utilities</a></li>
+<li><a href="#bb_utils">Bounding box utilities</a></li>
+<li><a href="#moment">Moments, areas, etc</a></li>
+</ul>
+</li>
+<li><a href="#datatypes">Data types</a></li>
+<li><a href="#glmath_compat">GLMATH compatibility</a></li>
+<li><a href="#toolbox">Toolbox</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<a class="image" href="http://www.lua.org"><img src="powered-by-lua.gif" alt="Lua logo"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface">Preface</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the reference manual of <strong>MoonChipmunk</strong>, which is a
+<a href="https://www.lua.org"><strong>Lua</strong></a> binding library for Scott Lembcke&#8217;s
+<a href="http://chipmunk-physics.net/"><strong>Chipmunk2D</strong></a> physics engine.
+<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>It is assumed that the reader is familiar with both Chipmunk2D and the Lua programming language.</p>
+</div>
+<div class="paragraph">
+<p>For convenience of reference, this document contains external (deep) links to the
+<a href="https://www.lua.org/manual/5.3/manual.html">Lua Reference Manual</a> and the
+<a href="http://chipmunk-physics.net/documentation.php">Chipmunk2D Documentation</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_getting_and_installing">Getting and installing</h3>
+<div class="paragraph">
+<p>For installation intructions, refer to the README file in the
+<a href="https://github.com/stetre/moonchipmunk"><strong>MoonChipmunk official repository</strong></a>
+on GitHub.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_module_organization">Module organization</h3>
+<div class="paragraph">
+<p>The MoonChipmunk module is loaded using Lua&#8217;s
+<a href="http://www.lua.org/manual/5.3/manual.html#pdf-require">require</a>() and
+returns a table containing the functions it provides
+(as usual with Lua modules). This manual assumes that such
+table is named <strong>cp</strong>, i.e. that it is loaded with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"> <span class="tok-n">cp</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moonchipmunk&quot;</span><span class="tok-p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>but nothing forbids the use of a different name.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples">Examples</h3>
+<div class="paragraph">
+<p>Complete examples can be found in the <strong>examples/</strong> directory of the release package.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_license">License</h3>
+<div class="paragraph">
+<p>MoonChipmunk is released under the <strong>MIT/X11 license</strong> (same as
+<a href="http://www.lua.org/license.html">Lua</a>, and with the same only requirement to give proper
+credits to the original author).
+The copyright notice is in the LICENSE file in the base directory
+of the <a href="https://github.com/stetre/moonchipmunk">official repository</a> on GitHub.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="see-also">See also</h3>
+<div class="paragraph">
+<p>MoonChipmunk is part of <a href="https://github.com/stetre/moonlibs">MoonLibs</a>, a collection of
+Lua libraries for graphics and audio programming.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MoonChipmunk is an almost one-to-one Lua binding library to the Chipmunk2D physics engine.
+This means that by and large, it is intended to be used as described in the <a href="http://chipmunk-physics.net/release/ChipmunkLatest-Docs/">Chipmunk2D Manual</a> (apart from coding in Lua, of course).</p>
+</div>
+<div class="paragraph">
+<p>This section gives a brief overview of the binding library, while the details are given
+in the sections that follow.</p>
+</div>
+<div class="paragraph">
+<p>MoonChipmunk binds Chipmunk2D <strong>objects</strong> (<em>space</em>, <em>body</em>, etc.) to Lua userdata, which are
+returned by the creating functions (<em>cp.space_new</em>(&nbsp;), <em>cp.body_new</em>(&nbsp;), etc) and are then used to refer to objects in Lua in the same way as one would use Chipmunk2D handles in C.</p>
+</div>
+<div class="paragraph">
+<p>As a general rule, Chipmunk2D functions are bound to MoonChipmunk functions or methods
+whose names are <a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a> versions of the original ones.</p>
+</div>
+<div class="paragraph">
+<p>The functions related to an object type - with the exception of the creating function - are
+bounded to methods of that object (e.g. the C function <em>cpSpaceSetGravity(space,&#8230;&#8203;)</em> becomes the method <em>space:set_gravity(&#8230;&#8203;)</em> in Lua.</p>
+</div>
+<div class="paragraph">
+<p>Objects are <strong>garbage collected at exit</strong> (which includes on error), and automatically
+deleted at the Chipmunk2D level, so there is no need to explicitly invoke their <em>free</em>(&nbsp;) methods at exit for cleanup.</p>
+</div>
+<div class="paragraph">
+<p>Apart from at exit, however, objects are not automatically garbage collected
+<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>
+and one must release them explicitly when needed, e.g. to release resources when the
+application is not exiting and some objects are no longer needed.</p>
+</div>
+<div class="paragraph">
+<p>Releasing an object causes the automatic (pre) destruction of all its children
+objects, and the invalidation of any reference to the object and to its children.
+<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>If not stated otherwise, <strong>on error</strong> all MoonChipmunk functions raise a
+<a href="http://www.lua.org/manual/5.3/manual.html#lua_error">Lua error</a>.
+If needed, this behaviour can be overridden by wrapping function calls in the standard Lua
+<a href="http://www.lua.org/manual/5.3/manual.html#pdf-pcall">pcall</a>(&nbsp;).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objects">Objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Listed below are the Lua object types in MoonChipmunk, together with the corresponding
+original types in Chipmunk2D:</p>
+</div>
+<div class="paragraph">
+<p><span class="small">Objects:<br>
+<a href="#space">space</a> <em>(cpSpace, cpHastySpace)</em><br>
+<a href="#body">body</a> <em>(cpBody)</em><br>
+<a href="#shape">shape</a> <em>(cpShape)</em><br>
+&#9500;&#9472;&#8192;<a href="#circle">circle</a> <em>(cpCircleShape)</em><br>
+&#9500;&#9472;&#8192;<a href="#segment">segment</a> <em>(cpSegmentShape)</em><br>
+&#9492;&#9472;&#8192;<a href="#poly">poly</a> <em>(cpPolyShape)</em><br>
+<a href="#constraint">constraint</a> <em>(cpConstraint)</em><br>
+&#9500;&#9472;&#8192;<a href="#pin_joint">pin_joint</a> <em>(cpPinJoint)</em><br>
+&#9500;&#9472;&#8192;<a href="#slide_joint">slide_joint</a> <em>(cpSlideJoint)</em><br>
+&#9500;&#9472;&#8192;<a href="#pivot_joint">pivot_joint</a> <em>(cpPivotJoint)</em><br>
+&#9500;&#9472;&#8192;<a href="#groove_joint">groove_joint</a> <em>(cpGrooveJoint)</em><br>
+&#9500;&#9472;&#8192;<a href="#damped_spring">damped_spring</a> <em>(cpDampedSpring)</em><br>
+&#9500;&#9472;&#8192;<a href="#damped_rotary_spring">damped_rotary_spring</a> <em>(cpDampedRotarySpring)</em><br>
+&#9500;&#9472;&#8192;<a href="#rotary_limit_joint">rotary_limit_joint</a> <em>(cpRotaryLimitJoint)</em><br>
+&#9500;&#9472;&#8192;<a href="#ratchet_joint">ratchet_joint</a> <em>(cpRatchetJoint)</em><br>
+&#9500;&#9472;&#8192;<a href="#gear_joint">gear_joint</a> <em>(cpGearJoint)</em><br>
+&#9492;&#9472;&#8192;<a href="#simple_motor">simple_motor</a> <em>(cpSimpleMotor)</em><br>
+<a href="#collision_handler">Collision handlers</a> <em>(cpCollisionHandler)</em><br>
+<a href="#arbiter">Arbiters</a> <em>(cpArbiter)</em></span></p>
+</div>
+<div class="sect2">
+<h3 id="space">Spaces</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_space.html">cpSpace</a>.</span></p>
+</div>
+<div id="space_new" class="ulist">
+<ul>
+<li>
+<p><em>space</em> = <strong>space_new</strong>( )<br>
+<em>space</em> = <strong>hasty_space_new</strong>( )<br>
+<em>space</em>:<strong>free</strong>( )<br>
+<span class="small">Create/delete a space.</span></p>
+</li>
+</ul>
+</div>
+<div id="space_set_threads" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>set_threads</strong>(<em>n</em>)<br>
+<em>n</em> = <em>space</em>:<strong>get_threads</strong>( )<br>
+<span class="small">For hasty spaces only.</span></p>
+</li>
+</ul>
+</div>
+<div id="space_step" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>step</strong>(<em>dt</em>)<br>
+<em>space</em>:<strong>nstep</strong>(<em>dt</em>, <em>n</em>)</p>
+</li>
+<li>
+<p><em>dt</em> = <em>space</em>:<strong>get_current_time_step</strong>( )<br>
+<span class="small"><em>dt</em>: float (seconds).<br>
+<em>n</em>: number of steps.</span></p>
+</li>
+</ul>
+</div>
+<div id="space_is_locked" class="ulist">
+<ul>
+<li>
+<p><em>boolean</em> = <em>space</em>:<strong>is_locked</strong>( )</p>
+</li>
+</ul>
+</div>
+<div id="space_set_gravity" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>set_gravity</strong>(<em>gravity</em>)<br>
+<em>space</em>:<strong>set_damping</strong>(<em>damping</em>)<br>
+<em>gravity</em> = <em>space</em>:<strong>get_gravity</strong>( )<br>
+<em>damping</em> = <em>space</em>:<strong>get_damping</strong>( )<br>
+<span class="small"><em>gravity</em>: <a href="#vec">vec</a> (defaults to <em>{0, 0}</em>).<br>
+<em>damping</em>: float (defaults to <em>1.0</em>).</span></p>
+</li>
+</ul>
+</div>
+<div id="space_set_iterations" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>set_iterations</strong>(<em>n</em>)<br>
+<em>n</em> = <em>space</em>:<strong>get_iterations</strong>( )</p>
+</li>
+</ul>
+</div>
+<div id="space_set_thresholds" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>set_idle_speed_threshold</strong>(<em>ist</em>)<br>
+<em>space</em>:<strong>set_sleep_time_threshold</strong>(<em>stt</em>)<br>
+<em>ist</em> = <em>space</em>:<strong>get_idle_speed_threshold</strong>( )<br>
+<em>stt</em> = <em>space</em>:<strong>get_sleep_time_threshold</strong>( )<br>
+<span class="small"><em>ist</em>: float (defaults to <em>0</em>).<br>
+<em>stt</em>: float (defaults to <em>math.huge</em>).</span></p>
+</li>
+</ul>
+</div>
+<div id="space_set_collision_xxx" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>set_collision_slop</strong>(<em>cs</em>)<br>
+<em>space</em>:<strong>set_collision_bias</strong>(<em>cb</em>)<br>
+<em>space</em>:<strong>set_collision_persistence</strong>(<em>cp</em>)<br>
+<em>cs</em> = <em>space</em>:<strong>get_collision_slop</strong>( )<br>
+<em>cb</em> = <em>space</em>:<strong>get_collision_bias</strong>( )<br>
+<em>cp</em> = <em>space</em>:<strong>get_collision_persistence</strong>( )<br>
+<span class="small"><em>cs</em>: float (defaults to <em>0.1</em>).<br>
+<em>cb</em>: float (defaults to <em>(1 - 0.1)<sup>60</sup></em>).<br>
+<em>cp</em>: number of frames (defaults to <em>3</em>).</span></p>
+</li>
+</ul>
+</div>
+<div id="space_get_static_body" class="ulist">
+<ul>
+<li>
+<p><a href="#body"><em>body</em></a> = <em>space</em>:<strong>get_static_body</strong>( )</p>
+</li>
+</ul>
+</div>
+<div id="space_add_xxx" class="ulist">
+<ul>
+<li>
+<p><a href="#body"><em>body</em></a> = <em>space</em>:<strong>add_body</strong>(<a href="#body"><em>body</em></a>)<br>
+<a href="#shape"><em>shape</em></a> = <em>space</em>:<strong>add_shape</strong>(<a href="#shape"><em>shape</em></a>)<br>
+<a href="#constraint"><em>constraint</em></a> = <em>space</em>:<strong>add_constraint</strong>(<a href="#constraint"><em>constraint</em></a>)<br>
+<em>space</em>:<strong>remove_body</strong>(<a href="#body"><em>body</em></a>)<br>
+<em>space</em>:<strong>remove_shape</strong>(<a href="#shape"><em>shape</em></a>)<br>
+<em>space</em>:<strong>remove_constraint</strong>(<a href="#constraint"><em>constraint</em></a>)<br>
+<em>boolean</em> = <em>space</em>:<strong>contains_body</strong>(<a href="#body"><em>body</em></a>)<br>
+<em>boolean</em> = <em>space</em>:<strong>contains_shape</strong>(<a href="#shape"><em>shape</em></a>)<br>
+<em>boolean</em> = <em>space</em>:<strong>contains_constraint</strong>(<a href="#constraint"><em>constraint</em></a>)</p>
+</li>
+</ul>
+</div>
+<div id="space_reindex" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>reindex_static</strong>( )<br>
+<em>space</em>:<strong>reindex_shape</strong>(<a href="#shape"><em>shape</em></a>)<br>
+<em>space</em>:<strong>reindex_shapes_for_body</strong>(<a href="#body"><em>body</em></a>)<br>
+<em>space</em>:<strong>use_spatial_hash</strong>(<em>dim</em>, <em>count</em>)</p>
+</li>
+</ul>
+</div>
+<div id="space_each" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>each_body</strong>(<em>func</em>)<br>
+<em>space</em>:<strong>each_shape</strong>(<em>func</em>)<br>
+<em>space</em>:<strong>each_constraint</strong>(<em>func</em>)<br>
+<span class="small">Execute <em>func</em> as <strong>func(space, object)</strong> for each object of the given type.</span></p>
+</li>
+<li>
+<p><em>collision_handler</em> = <em>space</em>:<strong>add_default_collision_handler</strong>( )<br>
+<em>collision_handler</em> = <em>space</em>:<strong>add_collision_handler</strong>(<em>type<sub>a</sub></em>, <em>type<sub>b</sub></em>)<br>
+<em>collision_handler</em> = <em>space</em>:<strong>add_wildcard_handler</strong>(<em>type</em>)<br>
+<span class="small">See <a href="#collision_handler">collision_handler</a>.</span></p>
+</li>
+</ul>
+</div>
+<div id="space_add_post_step_callback" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>add_post_step_callback</strong>(<em>func</em>)<br>
+<span class="small">The post-step callback is executed as <strong>func(space)</strong>.</span></p>
+</li>
+</ul>
+</div>
+<div id="space_queries" class="ulist">
+<ul>
+<li>
+<p><a href="#pointqueryinfo">pointqueryinfo</a>|<em>nil</em> = <em>space</em>:<strong>point_query_nearest</strong>(<em>point</em>, <em>maxdist</em>, <em>shapefilter</em>)<br>
+<a href="#segmentqueryinfo">segmentqueryinfo</a>|<em>nil</em> = <em>space</em>:<strong>segment_query_first</strong>(<em>p<sub>start</sub></em>, <em>p<sub>end</sub></em>, <em>radius</em>, <em>shapefilter</em>)<br>
+<em>space</em>:<strong>point_query</strong>(<em>point</em>, <em>maxdist</em>, <em>shapefilter</em>, <em>func</em>)<br>
+<em>space</em>:<strong>segment_query</strong>(<em>p<sub>start</sub></em>, <em>p<sub>end</sub></em>, <em>radius</em>, <em>shapefilter</em>, <em>func</em>)<br>
+<em>space</em>:<strong>bb_query</strong>(<a href="#bb"><em>bb</em></a>, <em>shapefilter</em>, <em>func</em>)<br>
+<em>space</em>:<strong>shape_query</strong>(<a href="#shape"><em>shape</em></a>, <em>func</em>)<br>
+<span class="small"><em>point</em>, <em>p<sub>start</sub></em>, <em>p<sub>end</sub></em>: <a href="#vec">vec</a>.<br>
+<em>maxdist</em>, <em>radius</em>: float.<br>
+<em>shapefilter</em>: <a href="#shapefilter">shapefilter</a>.<br>
+The <em>func</em> callbacks are executed for each hit shape, as follows:<br>
+- point query: <strong>func(space, shape, <em>point</em>, <em>distance</em>)</strong> (<em>point</em>: <a href="#vec">vec</a>, <em>distance</em>: float).<br>
+- segment query: <strong>func(space, shape, point, normal, alpha)</strong> (<em>point</em>, <em>normal</em>: <a href="#vec">vec</a>, <em>alpha</em>: float).<br>
+- bb query: <strong>func(space, shape)</strong>.<br>
+- shape query: <strong>func(space, shape, <em>normal</em>, {points})</strong> ( <em>normal</em>: <a href="#vec">vec</a>, <em>{points}</em>: {<a href="#contactpoint">contactpoint</a>}).</span></p>
+</li>
+</ul>
+</div>
+<div id="space_" class="ulist">
+<ul>
+<li>
+<p><em>space</em>:<strong>debug_draw</strong>( )<br>
+<em>space</em>:<strong>set_debug_draw_options</strong>(<em>draw_circle</em>, <em>draw_segment</em>, <em>&#8230;&#8203;</em>)<br>
+<span class="small">Arguments for set_debug_draw_options( ):<br>
+arg1: <em>space</em> (implicit argument).<br>
+arg2: <em>draw_circle</em>: a function, executed as <strong>func(angle, radius, outlinecolor, fillcolor)</strong>.<br>
+arg3: <em>draw_segment</em>: a function, executed as <strong>func(a, b, color)</strong><br>
+arg4: <em>draw_fat_segment</em>: a function, executed as <strong>func(a, b, radius, outlinecolor, fillcolor)</strong>.<br>
+arg5: <em>draw_polygon</em>: a function, executed as <strong>func({verts}, radius, outlinecolor, fillcolor)</strong><br>
+arg6: <em>draw_dot</em>: a function, executed as <strong>func(size, pos, color)</strong>.<br>
+arg7: <em>color_for_shape</em>: a function, executed as <strong>color = func(shape)</strong><br>
+arg8: <em>flags</em>: integer (<em>cpSpaceDebugDrawFlags</em>)<br>
+arg9: <em>shape_outline_color</em>: <a href="#color">color</a>,<br>
+arg10: <em>constraint_color</em>: <a href="#color">color</a>,<br>
+arg11: <em>collision_point_color</em>: <a href="#color">color</a>.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="body">Rigid bodies</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_body.html">cpBody</a>.</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>body</em> = <strong>body_new</strong>(<em>mass</em>, <em>moment</em>)<br>
+<em>body</em> = <strong>body_new_kinematic</strong>( )<br>
+<em>body</em> = <strong>body_new_static</strong>( )<br>
+<em>body</em>:<strong>free</strong>( )<br>
+<span class="small">Create/delete a rigid body.</span></p>
+</li>
+</ul>
+</div>
+<div id="body_get_space" class="ulist">
+<ul>
+<li>
+<p><a href="#space"><em>space</em></a>|<em>nil</em> = <em>body</em>:<strong>get_space</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="body_set_type" class="ulist">
+<ul>
+<li>
+<p><em>body</em>:<strong>set_type</strong>(<em>type</em>)<br>
+<em>type</em> = <em>body</em>:<strong>get_type</strong>( )<br>
+<span class="small"><em>type</em>: '<em>dynamic</em>' |, '<em>kinematic</em>' | '<em>static</em>'.</span></p>
+</li>
+</ul>
+</div>
+<div id="body_set_xxx" class="ulist">
+<ul>
+<li>
+<p><em>body</em>:<strong>set_mass</strong>(<em>value</em>)<br>
+<em>body</em>:<strong>set_moment</strong>(<em>value</em>)<br>
+<em>body</em>:<strong>set_angle</strong>(<em>value</em>)<br>
+<em>body</em>:<strong>set_angular_velocity</strong>(<em>value</em>)<br>
+<em>body</em>:<strong>set_torque</strong>(<em>value</em>)<br>
+<em>value</em> = <em>body</em>:<strong>get_mass</strong>( )<br>
+<em>value</em> = <em>body</em>:<strong>get_moment</strong>( )<br>
+<em>value</em> = <em>body</em>:<strong>get_angle</strong>( )<br>
+<em>value</em> = <em>body</em>:<strong>get_angular_velocity</strong>( )<br>
+<em>value</em> = <em>body</em>:<strong>get_torque</strong>( )<br>
+<em>value</em> = <em>body</em>:<strong>kinetic_energy</strong>( )<br>
+<span class="small"><em>value</em>: float.<br>
+Angles are in radians.</span></p>
+</li>
+</ul>
+</div>
+<div id="body_set_vec" class="ulist">
+<ul>
+<li>
+<p><em>body</em>:<strong>set_position</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<em>body</em>:<strong>set_center_of_gravity</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<em>body</em>:<strong>set_velocity</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<em>body</em>:<strong>set_force</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>get_position</strong>( )<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>get_center_of_gravity</strong>( )<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>get_velocity</strong>( )<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>get_force</strong>( )<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>get_rotation</strong>( )</p>
+</li>
+</ul>
+</div>
+<div id="body_local_to_world" class="ulist">
+<ul>
+<li>
+<p><a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>local_to_world</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>world_to_local</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>get_velocity_at_world_point</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<a href="#vec"><em>vec</em></a> = <em>body</em>:<strong>get_velocity_at_local_point</strong>(<a href="#vec"><em>vec</em></a>)<br></p>
+</li>
+</ul>
+</div>
+<div id="body_apply_xxx" class="ulist">
+<ul>
+<li>
+<p><em>body</em>:<strong>apply_force_at_world_point</strong>(<em>point</em>, <em>value</em>)<br>
+<em>body</em>:<strong>apply_force_at_local_point</strong>(<em>point</em>, <em>value</em>)<br>
+<em>body</em>:<strong>apply_impulse_at_world_point</strong>(<em>point</em>, <em>value</em>)<br>
+<em>body</em>:<strong>apply_impulse_at_local_point</strong>(<em>point</em>, <em>value</em>)<br>
+<span class="small"><em>point</em>, <em>value</em>: <a href="#vec">vec</a>.</span></p>
+</li>
+</ul>
+</div>
+<div id="body_update" class="ulist">
+<ul>
+<li>
+<p><em>body</em>:<strong>update_position</strong>(<em>dt</em>)<br>
+<em>body</em>:<strong>update_velocity</strong>(<em>gravity</em>, <em>damping</em>, <em>dt</em>)<br>
+<em>body</em>:<strong>set_position_update_func</strong>(<em>func</em>)<br>
+<em>body</em>:<strong>set_velocity_update_func</strong>(<em>func</em>)<br>
+<span class="small"><em>dt</em>, <em>damping</em>: float.<br>
+<em>gravity</em>: <a href="#vec">vec</a>.<br>
+The update callbacks are executed as follows:<br>
+- position update: <strong>func(body, dt)</strong>.<br>
+- velocity update: <strong>func(body, gravity, damping, dt)</strong>.</span></p>
+</li>
+</ul>
+</div>
+<div id="body_sleep" class="ulist">
+<ul>
+<li>
+<p><em>body</em>:<strong>sleep</strong>( )<br>
+<em>body</em>:<strong>sleep_with_group</strong>([<em>group</em>])<br>
+<em>body</em>:<strong>activate</strong>( )<br>
+<em>body</em>:<strong>activate_static</strong>([<em>filter</em>])<br>
+<em>boolean</em> = <em>body</em>:<strong>is_sleeping</strong>( )<br>
+<span class="small"><em>group</em>: <a href="#body">body</a>.<br>
+<em>filter</em>: <a href="#shape">shape</a>.</span></p>
+</li>
+</ul>
+</div>
+<div id="body_each_xxx" class="ulist">
+<ul>
+<li>
+<p><em>body</em>:<strong>each_shape</strong>(<em>func</em>)<br>
+<em>body</em>:<strong>each_constraint</strong>(<em>func</em>)<br>
+<em>body</em>:<strong>each_arbiter</strong>(<em>func</em>)<br>
+<span class="small">Execute <em>func</em> as <strong>func(body, object)</strong> for each object of the given type.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shape">Shapes</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_shape.html">cpShape</a>.</span></p>
+</div>
+<div id="shape_new" class="paragraph">
+<p>Constructors and specialized methods are available for the following subtypes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#circle">circle</a></p>
+</li>
+<li>
+<p><a href="#segment">segment</a></p>
+</li>
+<li>
+<p><a href="#poly">poly</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Common methods:</p>
+</div>
+<div id="shape_free" class="ulist">
+<ul>
+<li>
+<p><em>shape</em>:<strong>free</strong>( )<br>
+<span class="small">Delete <em>shape</em>.</span></p>
+</li>
+</ul>
+</div>
+<div id="shape_set_body" class="ulist">
+<ul>
+<li>
+<p><em>shape</em>:<strong>set_body</strong>(<a href="#body"><em>body</em></a>)<br>
+<a href="#body"><em>body</em></a> = <em>shape</em>:<strong>get_body</strong>( )<br>
+<a href="#space"><em>space</em></a> = <em>shape</em>:<strong>get_space</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="shape_update" class="ulist">
+<ul>
+<li>
+<p><a href="#bb"><em>bb</em></a> = <em>shape</em>:<strong>update</strong>(<em>transform</em>)<br>
+<span class="small"><em>transform</em>: <a href="#mat">mat</a>.</span></p>
+</li>
+</ul>
+</div>
+<div id="shape_set_float" class="ulist">
+<ul>
+<li>
+<p><em>shape</em>:<strong>set_mass</strong>(<em>value</em>)<br>
+<em>shape</em>:<strong>set_density</strong>(<em>value</em>)<br>
+<em>shape</em>:<strong>set_elasticity</strong>(<em>value</em>)<br>
+<em>shape</em>:<strong>set_friction</strong>(<em>value</em>)<br>
+<em>value</em> = <em>shape</em>:<strong>get_mass</strong>( )<br>
+<em>value</em> = <em>shape</em>:<strong>get_moment</strong>( )<br>
+<em>value</em> = <em>shape</em>:<strong>get_area</strong>( )<br>
+<em>value</em> = <em>shape</em>:<strong>get_density</strong>( )<br>
+<em>value</em> = <em>shape</em>:<strong>get_elasticity</strong>( )<br>
+<em>value</em> = <em>shape</em>:<strong>get_friction</strong>( )<br>
+<span class="small"><em>value</em>: float.</span></p>
+</li>
+</ul>
+</div>
+<div id="shape_set_vec" class="ulist">
+<ul>
+<li>
+<p><em>shape</em>:<strong>set_surface_velocity</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<a href="#vec"><em>vec</em></a> = <em>shape</em>:<strong>get_surface_velocity</strong>( )<br>
+<a href="#vec"><em>vec</em></a> = <em>shape</em>:<strong>get_center_of_gravity</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="shape_get_bb" class="ulist">
+<ul>
+<li>
+<p><a href="#bb"><em>bb</em></a> = <em>shape</em>:<strong>get_bb</strong>( )<br>
+<a href="#bb"><em>bb</em></a> = <em>shape</em>:<strong>cache_bb</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="shape_set_sensor" class="ulist">
+<ul>
+<li>
+<p><em>shape</em>:<strong>set_sensor</strong>(<em>boolean</em>)<br>
+<em>boolean</em> = <em>shape</em>:<strong>get_sensor</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="shape_set_filter" class="ulist">
+<ul>
+<li>
+<p><em>shape</em>:<strong>set_filter</strong>(<a href="#shapefilter"><em>shapefilter</em></a>)<br>
+<a href="#shapefilter"><em>shapefilter</em></a> = <em>shape</em>:<strong>get_filter</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="shape_filter_new" class="ulist">
+<ul>
+<li>
+<p><a href="#shapefilter"><em>shapefilter</em></a> = <strong>shape_filter_new</strong>(<em>group</em>, <em>categories</em>, <em>bitmask</em>)<br>
+<a href="#shapefilter"><em>shapefilter</em></a> = <strong>shape_filter_all</strong>( )<br>
+<a href="#shapefilter"><em>shapefilter</em></a> = <strong>shape_filter_none</strong>( )<br>
+<span class="small">Shape filter constructor and built-in shape filters (<em>CP_SHAPE_FILTER_XXX</em>).<br>
+Note that a shape filter is a plain Lua table, and thus may also be manually constructed.</span></p>
+</li>
+</ul>
+</div>
+<div id="shape_set_collision_type" class="ulist">
+<ul>
+<li>
+<p><em>shape</em>:<strong>set_collision_type</strong>(value)<br>
+value = <em>shape</em>:<strong>get_collision_type</strong>( )<br>
+<span class="small"><em>value</em>: integer.</span></p>
+</li>
+</ul>
+</div>
+<div id="shape_collide" class="ulist">
+<ul>
+<li>
+<p><em>normal</em>|<em>nil</em>, <em>{points}</em> = <strong>shapes_collide</strong>(<a href="#shape"><em>shape</em></a>, <a href="#shape"><em>othershape</em></a>)<br>
+ <em>normal</em>|<em>nil</em>, <em>{points}</em> = <em>shape</em>:<strong>collide</strong>(<a href="#shape"><em>othershape</em></a>)<br>
+<span class="small">Return <em>nil</em> if shape do not collide.<br>
+<em>normal</em> = <a href="#vec">vec</a>.<br>
+<em>{points}</em> = {<a href="#contactpoint">contactpoint</a>}.</span></p>
+</li>
+</ul>
+</div>
+<div id="shape_query" class="ulist">
+<ul>
+<li>
+<p><a href="#pointqueryinfo"><em>pointqueryinfo</em></a> = <em>shape</em>:<strong>point_query</strong>(<em>point</em>)<br>
+<a href="#segmentqueryinfo"><em>segmentqueryinfo</em></a>|<em>nil</em> = <em>shape</em>:<strong>segment_query</strong>(<em>a</em>, <em>b</em>, <em>radius</em>)<br>
+<span class="small"><em>point</em>, <em>a</em>, <em>b</em>: <a href="#vec">vec</a>.
+<em>radius</em>: float.</span></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="circle">circle</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#shape"><em>shape</em></a> = <strong>circle_shape_new</strong>(<a href="#body"><em>body</em></a>, <em>radius</em>, [<em>offset</em>])<br>
+<em>shape</em>:<strong>set_radius</strong>(<em>radius</em>) <em>UNSAFE</em><br>
+<em>shape</em>:<strong>set_offset</strong>(<em>offset</em>) <em>UNSAFE</em><br>
+<em>radius</em> = <em>shape</em>:<strong>get_radius</strong>( )<br>
+<em>offset</em> = <em>shape</em>:<strong>get_offset</strong>( )<br>
+<span class="small"><em>radius</em>: float.<br>
+<em>offset</em>: <a href="#vec">vec</a> (defaults to <em>{0, 0}</em>).</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="segment">segment</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#shape"><em>shape</em></a> = <strong>segment_shape_new</strong>(<a href="#body"><em>body</em></a>, <em>a</em>, <em>b</em>, <em>radius</em>)<br>
+<em>shape</em>:<strong>set_radius</strong>(<em>radius</em>) <em>UNSAFE</em><br>
+<em>shape</em>:<strong>set_endpoints</strong>(<em>a</em>, <em>b</em>) <em>UNSAFE</em><br>
+<em>shape</em>:<strong>set_neighbors</strong>(<em>prev</em>, <em>next</em>) <em>UNSAFE</em><br>
+<em>radius</em> = <em>shape</em>:<strong>get_radius</strong>( )<br>
+<em>a</em>, <em>b</em> = <em>shape</em>:<strong>get_endpoints</strong>( )<br>
+<em>normal</em> = <em>shape</em>:<strong>get_normal</strong>( )<br>
+<span class="small"><em>a</em>, <em>b</em>, <em>prev</em>, <em>next</em>, <em>normal</em>: <a href="#vec">vec</a>.<br>
+<em>radius</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="poly">poly</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#shape"><em>shape</em></a> = <strong>poly_shape_new</strong>(<a href="#body"><em>body</em></a>, <em>{verts}</em>, <em>radius</em>, [<em>transform</em>])<br>
+<a href="#shape"><em>shape</em></a> = <strong>box_shape_new</strong>(<a href="#body"><em>body</em></a>, <em>width</em>, <em>height</em>, <em>radius</em>)<br>
+<a href="#shape"><em>shape</em></a> = <strong>box_shape_new</strong>(<a href="#body"><em>body</em></a>, <a href="#bb"><em>bb</em></a>, <em>radius</em>)<br>
+<em>shape</em>:<strong>set_radius</strong>(<em>radius</em>) <em>UNSAFE</em><br>
+<em>shape</em>:<strong>set_verts</strong>(<em>{verts}</em>, [<em>transform</em>]) <em>UNSAFE</em><br>
+<em>radius</em> = <em>shape</em>:<strong>get_radius</strong>( )<br>
+<em>{verts}</em> = <em>shape</em>:<strong>get_verts</strong>( )<br>
+<em>nverts</em> = <em>shape</em>:<strong>get_count</strong>( )<br>
+<span class="small"><em>{verts}</em>: {<a href="#vec">vec</a>}.<br>
+<em>radius</em>, <em>width</em>, <em>height</em>: float.<br>
+<em>transform</em>: <a href="#mat">mat</a> (defaults to the identity transform).</span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="constraint">Constraints</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_constraint.html">cpConstraint</a>.</span></p>
+</div>
+<div id="constraint_new" class="paragraph">
+<p>Constructors and specialized methods are available for the following subtypes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#pin_joint">pin_joint</a></p>
+</li>
+<li>
+<p><a href="#slide_joint">slide_joint</a></p>
+</li>
+<li>
+<p><a href="#pivot_joint">pivot_joint</a></p>
+</li>
+<li>
+<p><a href="#groove_joint">groove_joint</a></p>
+</li>
+<li>
+<p><a href="#damped_spring">damped_spring</a></p>
+</li>
+<li>
+<p><a href="#damped_rotary_spring">damped_rotary_spring</a></p>
+</li>
+<li>
+<p><a href="#rotary_limit_joint">rotary_limit_joint</a></p>
+</li>
+<li>
+<p><a href="#ratchet_joint">ratchet_joint</a></p>
+</li>
+<li>
+<p><a href="#gear_joint">gear_joint</a></p>
+</li>
+<li>
+<p><a href="#simple_motor">simple_motor</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Common methods:</p>
+</div>
+<div id="constraint_free" class="ulist">
+<ul>
+<li>
+<p><em>constraint</em>:<strong>free</strong>( )<br>
+<span class="small">Delete <em>constraint</em>.</span></p>
+</li>
+</ul>
+</div>
+<div id="constraint_get_space" class="ulist">
+<ul>
+<li>
+<p><a href="#space"><em>space</em></a>|<em>nil</em> = <em>constraint</em>:<strong>get_space</strong>( )<br>
+<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a> = <em>constraint</em>:<strong>get_bodies</strong>( )<br>
+<a href="#body"><em>body<sub>a</sub></em></a> = <em>constraint</em>:<strong>get_body_a</strong>( )<br>
+<a href="#body"><em>body<sub>b</sub></em></a> = <em>constraint</em>:<strong>get_body_b</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="constraint_set_float" class="ulist">
+<ul>
+<li>
+<p><em>constraint</em>:<strong>set_max_force</strong>(<em>value</em>)<br>
+<em>constraint</em>:<strong>set_error_bias</strong>(<em>value</em>)<br>
+<em>constraint</em>:<strong>set_max_bias</strong>(<em>value</em>)<br>
+<em>value</em> = <em>constraint</em>:<strong>get_max_force</strong>( )<br>
+<em>value</em> = <em>constraint</em>:<strong>get_error_bias</strong>( )<br>
+<em>value</em> = <em>constraint</em>:<strong>get_max_bias</strong>( )<br>
+<em>value</em> = <em>constraint</em>:<strong>get_impulse</strong>( )<br>
+<span class="small"><em>value</em>: float.</span></p>
+</li>
+</ul>
+</div>
+<div id="constraint_set_collide_bodies" class="ulist">
+<ul>
+<li>
+<p><em>constraint</em>:<strong>set_collide_bodies</strong>(<em>boolean</em>)<br>
+<em>boolean</em> = <em>constraint</em>:<strong>get_collide_bodies</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="constraint_set_pre_solve_func" class="ulist">
+<ul>
+<li>
+<p><em>constraint</em>:<strong>set_pre_solve_func</strong>([<em>func</em>])<br>
+<em>constraint</em>:<strong>set_post_solve_func</strong>([<em>func</em>])<br>
+<em>func</em>|<em>nil</em> = <em>constraint</em>:<strong>get_pre_solve_func</strong>( )<br>
+<em>func</em>|<em>nil</em> = <em>constraint</em>:<strong>get_post_solve_func</strong>( )<br>
+<span class="small">Both the pre-solve and post-solve functions are executed as <strong>func(constraint, space)</strong>.</span></p>
+</li>
+</ul>
+</div>
+<div id="constraint_is" class="ulist">
+<ul>
+<li>
+<p><em>boolean</em> = <em>constraint</em>:<strong>is_pin_joint</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_slide_joint</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_pivot_joint</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_groove_joint</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_damped_spring</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_damped_rotary_spring</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_rotary_limit_joint</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_ratchet_joint</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_gear_joint</strong>( )<br>
+<em>boolean</em> = <em>constraint</em>:<strong>is_simple_motor</strong>( )</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="pin_joint">pin_joint</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>pin_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>)<br>
+<em>constraint</em>:<strong>set_anchor_a</strong>(<em>anchor<sub>a</sub></em>)<br>
+<em>constraint</em>:<strong>set_anchor_b</strong>(<em>anchor<sub>b</sub></em>)<br>
+<em>constraint</em>:<strong>set_dist</strong>(<em>dist</em>)<br>
+<em>anchor<sub>a</sub></em> = <em>constraint</em>:<strong>get_anchor_a</strong>( )<br>
+<em>anchor<sub>b</sub></em> = <em>constraint</em>:<strong>get_anchor_b</strong>( )<br>
+<em>dist</em> = <em>constraint</em>:<strong>get_dist</strong>( )<br>
+<span class="small"><em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>: <a href="#vec">vec</a>.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="slide_joint">slide_joint</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>slide_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>, <em>min</em>, <em>max</em>)<br>
+<em>constraint</em>:<strong>set_anchor_a</strong>(<em>anchor<sub>a</sub></em>)<br>
+<em>constraint</em>:<strong>set_anchor_b</strong>(<em>anchor<sub>b</sub></em>)<br>
+<em>constraint</em>:<strong>set_min</strong>(<em>min</em>)<br>
+<em>constraint</em>:<strong>set_max</strong>(<em>max</em>)<br>
+<em>anchor<sub>a</sub></em> = <em>constraint</em>:<strong>get_anchor_a</strong>( )<br>
+<em>anchor<sub>b</sub></em> = <em>constraint</em>:<strong>get_anchor_b</strong>( )<br>
+<em>min</em> = <em>constraint</em>:<strong>get_min</strong>( )<br>
+<em>max</em> = <em>constraint</em>:<strong>get_max</strong>( )<br>
+<span class="small"><em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>: <a href="#vec">vec</a>.<br>
+<em>min</em>, <em>max</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pivot_joint">pivot_joint</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>pivot_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>pivot</em>)<br>
+<a href="#constraint"><em>constraint</em></a> = <strong>pivot_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>)<br>
+<em>constraint</em>:<strong>set_anchor_a</strong>(<em>anchor<sub>a</sub></em>)<br>
+<em>constraint</em>:<strong>set_anchor_b</strong>(<em>anchor<sub>b</sub></em>)<br>
+<em>anchor<sub>a</sub></em> = <em>constraint</em>:<strong>get_anchor_a</strong>( )<br>
+<em>anchor<sub>b</sub></em> = <em>constraint</em>:<strong>get_anchor_b</strong>( )<br>
+<span class="small"><em>pivot</em>, <em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>: <a href="#vec">vec</a>.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="groove_joint">groove_joint</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>groove_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>groove<sub>a</sub></em>, <em>groove<sub>b</sub></em>, <em>anchor<sub>b</sub></em>)<br>
+<em>constraint</em>:<strong>set_groove_a</strong>(<em>groove<sub>a</sub></em>)<br>
+<em>constraint</em>:<strong>set_groove_b</strong>(<em>groove<sub>b</sub></em>)<br>
+<em>constraint</em>:<strong>set_anchor_b</strong>(<em>anchor<sub>b</sub></em>)<br>
+<em>groove<sub>a</sub></em> = <em>constraint</em>:<strong>get_groove_a</strong>( )<br>
+<em>groove<sub>b</sub></em> = <em>constraint</em>:<strong>get_groove_b</strong>( )<br>
+<em>anchor<sub>b</sub></em> = <em>constraint</em>:<strong>get_anchor_b</strong>( )<br>
+<span class="small"><em>groove<sub>a</sub></em>, <em>groove<sub>b</sub></em>, <em>anchor<sub>b</sub></em>: <a href="#vec">vec</a>.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="damped_spring">damped_spring</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>damped_spring_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>, <em>rest_length</em>, <em>stiffness</em>, <em>damping</em>)<br>
+<em>constraint</em>:<strong>set_anchor_a</strong>(<em>anchor<sub>a</sub></em>)<br>
+<em>constraint</em>:<strong>set_anchor_b</strong>(<em>anchor<sub>b</sub></em>)<br>
+<em>constraint</em>:<strong>set_rest_length</strong>(<em>rest_length</em>)<br>
+<em>constraint</em>:<strong>set_stiffness</strong>(<em>stiffness</em>)<br>
+<em>constraint</em>:<strong>set_damping</strong>(<em>damping</em>)<br>
+<em>constraint</em>:<strong>set_spring_force_func</strong>(<em>func</em>)<br>
+<em>anchor<sub>a</sub></em> = <em>constraint</em>:<strong>get_anchor_a</strong>( )<br>
+<em>anchor<sub>b</sub></em> = <em>constraint</em>:<strong>get_anchor_b</strong>( )<br>
+<em>rest_length</em> = <em>constraint</em>:<strong>get_rest_length</strong>( )<br>
+<em>stiffness</em> = <em>constraint</em>:<strong>get_stiffness</strong>( )<br>
+<em>damping</em> = <em>constraint</em>:<strong>get_damping</strong>( )<br>
+<em>func</em> = <em>constraint</em>:<strong>get_spring_force_func</strong>( )<br>
+<span class="small"><em>anchor<sub>a</sub></em>, <em>anchor<sub>b</sub></em>: <a href="#vec">vec</a>.<br>
+<em>rest_length</em>, <em>stiffness</em>, <em>damping</em>: float.<br>
+The spring force function is called as <strong>force = func(constraint, distance)</strong> (<em>force</em>: float).</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="damped_rotary_spring">damped_rotary_spring</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>damped_rotary_spring_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>rest_angle</em>, <em>stiffness</em>, <em>damping</em>)<br>
+<em>constraint</em>:<strong>set_rest_angle</strong>(<em>rest_angle</em>)<br>
+<em>constraint</em>:<strong>set_stiffness</strong>(<em>stiffness</em>)<br>
+<em>constraint</em>:<strong>set_damping</strong>(<em>damping</em>)<br>
+<em>constraint</em>:<strong>set_spring_torque_func</strong>(<em>func</em>)<br>
+<em>rest_angle</em> = <em>constraint</em>:<strong>get_rest_angle</strong>( )<br>
+<em>stiffness</em> = <em>constraint</em>:<strong>get_stiffness</strong>( )<br>
+<em>damping</em> = <em>constraint</em>:<strong>get_damping</strong>( )<br>
+<em>func</em> = <em>constraint</em>:<strong>get_spring_torque_func</strong>( )<br>
+<span class="small"><em>rest_angle</em>, <em>stiffness</em>, <em>damping</em>: float.<br>
+The spring torque function is called as <strong>torque = func(constraint, relative_angle)</strong> (<em>torque</em>: float).</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rotary_limit_joint">rotary_limit_joint</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>rotary_limit_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>min</em>, <em>max</em>)<br>
+<em>constraint</em>:<strong>set_min</strong>(<em>min</em>)<br>
+<em>constraint</em>:<strong>set_max</strong>(<em>max</em>)<br>
+<em>min</em> = <em>constraint</em>:<strong>get_min</strong>( )<br>
+<em>max</em> = <em>constraint</em>:<strong>get_max</strong>( )<br>
+<span class="small"><em>min</em>, <em>max</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ratchet_joint">ratchet_joint</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>ratchet_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>phase</em>, <em>ratchet</em>)<br>
+<em>constraint</em>:<strong>set_phase</strong>(<em>phase</em>)<br>
+<em>constraint</em>:<strong>set_ratchet</strong>(<em>ratchet</em>)<br>
+<em>constraint</em>:<strong>set_angle</strong>(<em>angle</em>)<br>
+<em>phase</em> = <em>constraint</em>:<strong>get_phase</strong>( )<br>
+<em>ratchet</em> = <em>constraint</em>:<strong>get_ratchet</strong>( )<br>
+<em>angle</em> = <em>constraint</em>:<strong>get_angle</strong>( )<br>
+<span class="small"><em>phase</em>, <em>ratchet</em>, <em>angle</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gear_joint">gear_joint</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>gear_joint_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>phase</em>, <em>ratio</em>)<br>
+<em>constraint</em>:<strong>set_phase</strong>(<em>phase</em>)<br>
+<em>constraint</em>:<strong>set_ratio</strong>(<em>ratio</em>)<br>
+<em>phase</em> = <em>constraint</em>:<strong>get_phase</strong>( )<br>
+<em>ratio</em> = <em>constraint</em>:<strong>get_ratio</strong>( )<br>
+<span class="small"><em>phase</em>, <em>ratio</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="simple_motor">simple_motor</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraint"><em>constraint</em></a> = <strong>simple_motor_new</strong>(<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a>, <em>rate</em>)<br>
+<em>constraint</em>:<strong>set_rate</strong>(<em>rate</em>)<br>
+<em>rate</em> = <em>constraint</em>:<strong>get_rate</strong>( )<br>
+<span class="small"><em>rate</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="collision_handler">Collision handlers</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_collision_handler.html">cpCollisionHandler</a>.</span></p>
+</div>
+<div id="space_add_collision_handler" class="ulist">
+<ul>
+<li>
+<p><em>collision_handler</em> = <em>space</em>:<strong>add_default_collision_handler</strong>( )<br>
+<em>collision_handler</em> = <em>space</em>:<strong>add_collision_handler</strong>(<em>type<sub>a</sub></em>, <em>type<sub>b</sub></em>)<br>
+<em>collision_handler</em> = <em>space</em>:<strong>add_wildcard_handler</strong>(<em>type</em>)<br>
+<span class="small"><em>type</em>, <em>type<sub>a</sub></em>, <em>type<sub>b</sub></em>: integer (cpCollisionType).</span></p>
+</li>
+</ul>
+</div>
+<div id="collision_handler_free" class="ulist">
+<ul>
+<li>
+<p><em>collision_handler</em>:<strong>free</strong>( )<br>
+<span class="small">Delete <em>collision_handler</em>.</span></p>
+</li>
+</ul>
+</div>
+<div id="collision_handler_xxx" class="ulist">
+<ul>
+<li>
+<p><em>type<sub>a</sub></em>, <em>type<sub>b</sub></em> = <em>collision_handler</em>:<strong>get_types</strong>( )<br>
+<em>collision_handler</em>:<strong>set_begin_func</strong>(<em>func</em>)<br>
+<em>collision_handler</em>:<strong>set_pre_solve_func</strong>(<em>func</em>)<br>
+<em>collision_handler</em>:<strong>set_post_solve_func</strong>(<em>func</em>)<br>
+<em>collision_handler</em>:<strong>set_separate_func</strong>(<em>func</em>)<br>
+<span class="small">The callbacks are executed as follows:<br>
+- begin: <strong>boolean = func(<a href="#arbiter">arbiter</a>, space)</strong>.<br>
+- pre solve: <strong>boolean = func(<a href="#arbiter">arbiter</a>, space)</strong>.<br>
+- post solve: <strong>func(<a href="#arbiter">arbiter</a>, space)</strong>.<br>
+- separate: <strong>func(<a href="#arbiter">arbiter</a>, space)</strong>.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="arbiter">Arbiters</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_arbiter.html">cpArbiter</a>.</span></p>
+</div>
+<div class="paragraph">
+<p>From the point of view of the Lua scripts, an arbiter object is automatically created when it
+is received as argument to some callback function, and automatically deleted as soon as the
+function returns.</p>
+</div>
+<div id="arbiter_set_float" class="ulist">
+<ul>
+<li>
+<p><em>arbiter</em>:<strong>set_restitution</strong>(<em>value</em>)<br>
+<em>arbiter</em>:<strong>set_friction</strong>(<em>value</em>)<br>
+<em>value</em> = <em>arbiter</em>:<strong>get_restitution</strong>( )<br>
+<em>value</em> = <em>arbiter</em>:<strong>get_friction</strong>( )<br>
+<em>value</em> = <em>arbiter</em>:<strong>total_ke</strong>( )<br>
+<span class="small"><em>value</em>: float.</span></p>
+</li>
+</ul>
+</div>
+<div id="arbiter_set_vec" class="ulist">
+<ul>
+<li>
+<p><em>arbiter</em>:<strong>set_surface_velocity</strong>(<a href="#vec"><em>vec</em></a>)<br>
+<a href="#vec"><em>vec</em></a> = <em>arbiter</em>:<strong>get_surface_velocity</strong>( )<br>
+<a href="#vec"><em>vec</em></a> = <em>arbiter</em>:<strong>get_normal</strong>( )<br>
+<a href="#vec"><em>vec</em></a> = <em>arbiter</em>:<strong>total_impulse</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="arbiter_get_boolean" class="ulist">
+<ul>
+<li>
+<p><em>boolean</em> = <em>arbiter</em>:<strong>ignore</strong>( )<br>
+<em>boolean</em> = <em>arbiter</em>:<strong>is_first_contact</strong>( )<br>
+<em>boolean</em> = <em>arbiter</em>:<strong>is_removal</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="arbiter_get_shapes" class="ulist">
+<ul>
+<li>
+<p><a href="#shape"><em>shape<sub>a</sub></em></a>, <a href="#shape"><em>shape<sub>b</sub></em></a> = <em>arbiter</em>:<strong>get_shapes</strong>( )<br>
+<a href="#body"><em>body<sub>a</sub></em></a>, <a href="#body"><em>body<sub>b</sub></em></a> = <em>arbiter</em>:<strong>get_bodies</strong>( )<br></p>
+</li>
+</ul>
+</div>
+<div id="arbiter_contact_point_set" class="ulist">
+<ul>
+<li>
+<p><em>arbiter</em>:<strong>set_contact_point_set</strong>(<em>normal</em>, <em>{points}</em>)<br>
+<em>normal</em>, <em>{points}</em> = <em>arbiter</em>:<strong>get_contact_point_set</strong>( )<br>
+<span class="small"><em>normal</em>: <a href="#vec">vec</a>.<br>
+<em>{points}</em>: {<a href="#contactpoint">contactpoint</a>}.</span></p>
+</li>
+</ul>
+</div>
+<div id="arbiter_get_points" class="ulist">
+<ul>
+<li>
+<p><em>npoints</em> = <em>arbiter</em>:<strong>get_count</strong>( )<br>
+<em>{point<sub>a</sub>}</em>, <em>{point<sub>b</sub>}</em>, <em>{depth}</em> = <em>arbiter</em>:<strong>get_points</strong>( )<br>
+<span class="small"><em>{point<sub>a</sub>}</em>, <em>{point<sub>b</sub>}</em>: {<a href="#vec">vec</a>}.<br>
+<em>{depth}</em>: {float}.</span></p>
+</li>
+</ul>
+</div>
+<div id="arbiter_call_wildcard" class="ulist">
+<ul>
+<li>
+<p><em>boolean</em> = <em>arbiter</em>:<strong>call_wildcard_begin_a</strong>(<em>arbiter</em>, <em>space</em>)<br>
+<em>boolean</em> = <em>arbiter</em>:<strong>call_wildcard_begin_b</strong>(<em>arbiter</em>, <em>space</em>)<br>
+<em>boolean</em> = <em>arbiter</em>:<strong>call_wildcard_pre_solve_a</strong>(<em>arbiter</em>, <em>space</em>)<br>
+<em>boolean</em> = <em>arbiter</em>:<strong>call_wildcard_pre_solve_b</strong>(<em>arbiter</em>, <em>space</em>)<br>
+<em>arbiter</em>:<strong>call_wildcard_post_solve_a</strong>(<em>arbiter</em>, <em>space</em>)<br>
+<em>arbiter</em>:<strong>call_wildcard_post_solve_b</strong>(<em>arbiter</em>, <em>space</em>)<br>
+<em>arbiter</em>:<strong>call_wildcard_separate_a</strong>(<em>arbiter</em>, <em>space</em>)<br>
+<em>arbiter</em>:<strong>call_wildcard_separate_b</strong>(<em>arbiter</em>, <em>space</em>)<br></p>
+</li>
+</ul>
+</div>
+<div id="arbiter_get_user_data" class="ulist">
+<ul>
+<li>
+<p><em>value</em> = <em>arbiter</em>:<strong>get_user_index</strong>( )<br>
+<em>arbiter</em>:<strong>set_user_index</strong>(<em>value</em>)<br>
+<span class="small">Set/get a user-defined integer index associated with the arbiter.<br>
+This is a limited binding to <em>cpArbiterSetUserData( )</em> and <em>cpArbiterGetUserData( )</em>:
+it doesn&#8217;t allow you to directly associate a generic user data value with the arbiter,
+but you can store it in a table and associate with the arbiter the corresponding index instead.<br>
+Note that you can&#8217;t use the <em>arbiter</em> itself to index the user data table, because the arbiter Lua
+object is actually a singleton that is reused every time a <em>cpArbiter</em> is passed to a callback.
+(From the Chipmunk Manual: <em>"[&#8230;&#8203;] you should never store a reference to an arbiter as you don’t
+know when they will be freed or reused."</em>).</span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="miscellanea">Miscellanea</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="float_utils">Float utilities</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__basic_types.html">cp basic types</a>.</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>value</em> = <strong>fclamp</strong>(<em>f</em>, <em>a</em>, <em>b</em>)<br>
+<em>value</em> = <strong>fclamp01</strong>(<em>f</em>)<br>
+<em>value</em> = <strong>flerp</strong>(<em>f<sub>1</sub></em>, <em>f<sub>2</sub></em>, <em>f</em>)<br>
+<em>value</em> = <strong>flerpconst</strong>(<em>f<sub>1</sub></em>, <em>f<sub>2</sub></em>, <em>f</em>)<br>
+<span class="small"><em>value</em>, <em>f</em>, <em>f<sub>1</sub></em>, <em>f<sub>2</sub></em>, <em>a</em>, <em>b</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vec_utils">Vector utilities</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_vect.html">cpVect</a>.</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>boolean</em> = <strong>veql</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>v</em> = <strong>vadd</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>v</em> = <strong>vsub</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>v</em> = <strong>vneg</strong>(<em>v<sub>1</sub></em>)<br>
+<em>v</em> = <strong>vmult</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>value</em> = <strong>vdot</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>value</em> = <strong>vcross</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>v</em> = <strong>vperp</strong>(<em>v<sub>1</sub></em>)<br>
+<em>v</em> = <strong>vrperp</strong>(<em>v<sub>1</sub></em>)<br>
+<em>v</em> = <strong>vproject</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>v</em> = <strong>vforangle</strong>(<em>angle</em>)<br>
+<em>angle</em> = <strong>vtoangle</strong>(<em>v</em>)<br>
+<em>v</em> = <strong>vrotate</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>v</em> = <strong>vunrotate</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>value</em> = <strong>vlength</strong>(<em>v<sub>1</sub></em>)<br>
+<em>value</em> = <strong>vlengthsq</strong>(<em>v<sub>1</sub></em>)<br>
+<em>value</em> = <strong>vdist</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>value</em> = <strong>vdistsq</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>v</em> = <strong>vnormalize</strong>(<em>v<sub>1</sub></em>)<br>
+<em>v</em> = <strong>vclamp</strong>(<em>v<sub>1</sub></em>, <em>len</em>)<br>
+<em>boolean</em> = <strong>vnear</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>, <em>d</em>)<br>
+<em>v</em> = <strong>vlerp</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>, <em>d</em>)<br>
+<em>v</em> = <strong>vslerp</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>, <em>d</em>)<br>
+<em>v</em> = <strong>vlerpconst</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>, <em>d</em>)<br>
+<em>v</em> = <strong>vslerpconst</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>, <em>d</em>)<br>
+<span class="small"><em>v</em>, <em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>: <a href="#vec">vec</a>.<br>
+<em>value</em>, <em>angle</em>, <em>len</em>, <em>d</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mat_utils">Transform utilities</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_transform.html">cpTransform</a>.</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>m</em> = <strong>transform_identity</strong>( )<br>
+<em>m</em> = <strong>transform_new</strong>(<em>a</em>, <em>b</em>, <em>c</em>, <em>d</em>, <em>t<sub>x</sub></em>, <em>t<sub>y</sub></em>)<br>
+<em>m</em> = <strong>transform_new_transpose</strong>(<em>a</em>, <em>c</em>, <em>t<sub>x</sub></em>, <em>b</em>, <em>d</em>, <em>t<sub>y</sub></em>)<br>
+<em>m</em> = <strong>transform_inverse</strong>(<em>m<sub>1</sub></em>)<br>
+<em>m</em> = <strong>transform_mult</strong>(<em>m<sub>1</sub></em>, <em>m<sub>2</sub></em>)<br>
+<em>p</em> = <strong>transform_point</strong>(<em>m</em>, <em>p</em>)<br>
+<em>v</em> = <strong>transform_vect</strong>(<em>m</em>, <em>v</em>)<br>
+<em>bb</em> = <strong>transform_bb</strong>(<em>m</em>, <em>bb</em>)<br>
+<em>m</em> = <strong>transform_translate</strong>(<em>v</em>)<br>
+<em>m</em> = <strong>transform_scale</strong>(<em>s<sub>x</sub></em>, <em>s<sub>y</sub></em>)<br>
+<em>m</em> = <strong>transform_rotate</strong>(<em>angle</em>)<br>
+<em>m</em> = <strong>transform_rigid</strong>(<em>v</em>, <em>angle</em>)<br>
+<em>m</em> = <strong>transform_rigid_inverse</strong>(<em>m<sub>1</sub></em>)<br>
+<em>m</em> = <strong>transform_wrap</strong>(<em>m<sub>outer</sub></em>, <em>m<sub>inner</sub></em>)<br>
+<em>m</em> = <strong>transform_wrap_inverse</strong>(<em>m<sub>outer</sub></em>, <em>m<sub>inner</sub></em>)<br>
+<em>m</em> = <strong>transform_ortho</strong>(<em>bb</em>)<br>
+<em>m</em> = <strong>transform_bone_scale</strong>(<em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>)<br>
+<em>m</em> = <strong>transform_axial_scale</strong>(<em>axis</em>, <em>pivot</em>, <em>scale</em>)<br>
+<span class="small"><em>m</em>, <em>m<sub>1</sub>, _m<sub>2</sub></em>, <em>m<sub>outer</sub></em>, <em>m<sub>inner</sub></em>: <a href="#mat">mat</a>.<br>
+<em>p</em>, <em>v</em>, <em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>, <em>axis</em>, <em>pivot</em>: <a href="#vec">vec</a>.<br>
+<em>bb</em>: <a href="#bb">bb</a>.<br>
+<em>a</em>, <em>b</em>, <em>c</em>, <em>d</em>, <em>t<sub>x</sub></em>, <em>t<sub>y</sub></em>, <em>s<sub>x</sub></em>, <em>s<sub>y</sub></em>, <em>angle</em>, <em>scale</em>: float.</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bb_utils">Bounding box utilities</h3>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_b_b_b.html">cpBB</a>.</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>bb</em> = <strong>bb_new_for_extents</strong>(<em>center</em>, <em>width</em>, <em>height</em>)<br>
+<em>bb</em> = <strong>bb_new_for_circle</strong>(<em>center</em>, <em>radius</em>)<br>
+<em>boolean</em> = <strong>bb_intersects</strong>(<em>bb<sub>1</sub></em>, <em>bb<sub>2</sub></em>)<br>
+<em>boolean</em> = <strong>bb_contains_bb</strong>(<em>bb<sub>1</sub></em>, <em>bb<sub>2</sub></em>)<br>
+<em>boolean</em> = <strong>bb_contains_vect</strong>(<em>bb</em>, <em>v</em>)<br>
+<em>bb</em> = <strong>bb_merge</strong>(<em>bb<sub>1</sub></em>, <em>bb<sub>2</sub></em>)<br>
+<em>bb</em> = <strong>bb_expand</strong>(<em>bb<sub>1</sub></em>, <em>v</em>)<br>
+<em>center</em> = <strong>bb_center</strong>(<em>bb</em>)<br>
+<em>area</em> = <strong>bb_area</strong>(<em>bb</em>)<br>
+<em>area</em> = <strong>bb_merged_area</strong>(<em>bb<sub>1</sub></em>, <em>bb<sub>2</sub></em>)<br>
+<em>f</em> = <strong>bb_segment_query</strong>(<em>bb</em>, <em>a</em>, <em>b</em>)<br>
+<em>boolean</em> = <strong>bb_intersects_segment</strong>(<em>bb</em>, <em>a</em>, <em>b</em>)<br>
+<em>v</em> = <strong>bb_clamp_vect</strong>(<em>bb</em>, <em>v</em>)<br>
+<em>v</em> = <strong>bb_wrap_vect</strong>(<em>bb</em>, <em>v</em>)<br>
+<em>bb</em> = <strong>bb_offset</strong>(<em>bb</em>, <em>v</em>)<br>
+<span class="small"><em>bb</em>, <em>bb<sub>1</sub></em>, <em>bb<sub>2</sub></em>: <a href="#bb">bb</a>.<br>
+<em>center</em>, <em>v</em>, <em>a</em>, <em>b</em>: <a href="#vec">vec</a>.<br>
+<em>width</em>, <em>height</em>, <em>area</em>, <em>f</em>: float.</span></p>
+</li>
+<li>
+<p><strong>march_soft</strong>(<em>bb</em>, <em>xsamples</em>, <em>ysamples</em>, <em>threshold</em>, <em>samplefunc</em>, <em>segmentfunc</em> )<br>
+<strong>march_hard</strong>(<em>bb</em>, <em>xsamples</em>, <em>ysamples</em>, <em>threshold</em>, <em>samplefunc</em>, <em>segmentfunc</em> )<br>
+<span class="small"><em>bb</em>: <a href="#bb">bb</a>.<br>
+<em>xsamples</em>, <em>ysamples</em>: integer.<br>
+<em>threshold</em>: float.<br>
+The sample function is executed as <strong>density = func(p)</strong> (<em>density</em>: float, <em>p</em>: <a href="#vec">vec</a>).<br>
+The segment function is executed as <strong>func(<em>a</em>, <em>b</em>)</strong> (<em>a</em>, <em>b</em>: <a href="#vec">vec</a>).</span></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="moment">Moments, areas, etc</h3>
+<div class="paragraph">
+<p><span class="small">Rfr:https://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__misc.html[cp misc].</span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>moment</em> = <strong>moment_for_circle</strong>(<em>mass</em>, <em>r<sub>inner</sub></em>, <em>r<sub>outer</sub></em>, <em>offset</em>)<br>
+<em>moment</em> = <strong>moment_for_segment</strong>(<em>mass</em>, <em>point<sub>a</sub></em>, <em>point<sub>b</sub></em>, <em>radius</em>)<br>
+<em>moment</em> = <strong>moment_for_poly</strong>(<em>mass</em>, <em>{verts}</em>, <em>offset</em>, <em>radius</em>)<br>
+<em>moment</em> = <strong>moment_for_box</strong>(<em>mass</em>, <em>width</em>, <em>height</em>)<br>
+<em>moment</em> = <strong>moment_for_box</strong>(<em>mass</em>, <a href="#bb"><em>bb</em></a>)<br>
+<em>area</em> = <strong>area_for_circle</strong>(<em>r<sub>inner</sub></em>, <em>r<sub>outer</sub></em>)<br>
+<em>area</em> = <strong>area_for_segment</strong>(<em>point<sub>a</sub></em>, <em>point<sub>b</sub></em>, <em>radius</em>)<br>
+<em>area</em> = <strong>area_for_poly</strong>(<em>{verts}</em>, <em>radius</em>)<br>
+<em>centroid</em> = <strong>centroid_for_poly</strong>(<em>{verts}</em>)<br>
+<em>{verts}</em> = <strong>convex_hull</strong>(<em>{verts}</em>, <em>tol</em>)<br>
+<span class="small"><em>moment</em>, <em>area</em>, <em>mass</em>, <em>r<sub>inner</sub></em>, <em>r<sub>outer</sub></em>, <em>radius</em>, <em>width</em>, <em>height</em>, <em>tol</em>: float.<br>
+<em>point<sub>a</sub></em>, <em>point<sub>b</sub></em>, <em>offset</em>, <em>centroid</em>: <a href="#vec">vec</a>.<br>
+<em>{verts}</em>: {<a href="#vec">vec</a>}.</span></p>
+</li>
+<li>
+<p><em>p</em> = <strong>closest_point_on_segment</strong>(<em>p</em>, <em>a</em>, <em>b</em>)<br>
+<span class="small">Returns the point on the segment (<em>a</em>, <em>b</em>) that is closest to the point <em>p</em>.<br>
+<em>p</em>, <em>a</em>, <em>b</em>: <a href="#vec">vec</a>.</span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="datatypes">Data types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this document, the <em>float</em> and <em>integer</em> types denote Lua numbers, while other types
+such as <em>boolean</em>, <em>string</em>, etc denote standard Lua types. Note that <em>float</em>
+here just means 'floating point' as opposed to 'integer', and does not imply
+single-precision (all numbers are actually represented internally using double-precision).</p>
+</div>
+<div class="paragraph">
+<p>Angles are always expressed in radians.</p>
+</div>
+<div class="paragraph">
+<p>Vectors, matrices, bounding boxes, and colors are by default represented as Lua arrays containing
+<em>float</em> elements (or arrays of arrays in the case of matrices). The meaning of the elements
+thus depends on their position, as detailed below, and there is no syntactic sugar
+such as <em>v.x</em> and <em>v.y</em> to access them (unless one enables <a href="#glmath_compat">GLMATH compatibility</a>).</p>
+</div>
+<div class="paragraph">
+<p>A few other ChipmunkD structs are represented as string-indexed Lua tables, also described below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="vec"></a>
+<span class="small"><strong>vec</strong> = {<em>x</em>, <em>y</em>}<br>
+All elements are floats.<br>
+(Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_vect.html">cpVect</a>)</span></p>
+</li>
+<li>
+<p><a id="mat"></a>
+<span class="small"><strong>mat</strong> = {{<em>a</em>, <em>c</em>, <em>tx</em>}, {<em>b</em>, <em>d</em>, <em>ty</em>}}<br>
+All elements are floats.<br>
+(Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_transform.html">cpTransform</a>)</span></p>
+</li>
+<li>
+<p><a id="bb"></a>
+<span class="small"><strong>bb</strong> = {<em>l</em>, <em>r</em>, <em>b</em>, <em>t</em>}<br>
+All elements are floats.<br>
+Beware that the order is different than in <em>cpBB</em> (where the order is <em>l</em>, <em>b</em>, <em>r</em>, <em>t</em>).<br>
+(Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_b_b.html">cpBB</a>)</span></p>
+</li>
+<li>
+<p><a id="color"></a>
+<span class="small"><strong>color</strong> = {<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>}<br>
+All elements are floats, representing normalized color components (i.e. in the range <em>[0, 1]</em>).<br>
+(Rfr: cpSpaceDebugColor)</span></p>
+</li>
+<li>
+<p><a id="shapefilter"></a>
+<span class="small"><strong>shapefilter</strong> = {<br>
+<em>group</em>: integer,<br>
+<em>categories</em>: integer,<br>
+<em>mask</em>: integer,<br>
+} (Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_shape_filter.html">cpShapeFilter</a>)</span></p>
+</li>
+<li>
+<p><a id="pointqueryinfo"></a>
+<span class="small"><strong>pointqueryinfo</strong> = {<br>
+<em>shape</em>: <a href="#shape">shape</a>,<br>
+<em>point</em>: <a href="#vec">vec</a>,<br>
+<em>distance</em>: float,<br>
+<em>gradient</em>: <a href="#vec">vec</a>,<br>
+} (Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_point_query_info.html">cpPointQueryInfo</a>)</span></p>
+</li>
+<li>
+<p><a id="segmentqueryinfo"></a>
+<span class="small"><strong>segmentqueryinfo</strong> = {<br>
+<em>shape</em>: <a href="#shape">shape</a>,<br>
+<em>point</em>: <a href="#vec">vec</a>,<br>
+<em>normal</em>: <a href="#vec">vec</a>,<br>
+<em>alpha</em>: float,<br>
+} (Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_segment_query_info.html">cpSegmentQueryInfo</a>)</span></p>
+</li>
+<li>
+<p><a id="contactpoint"></a>
+<span class="small"><strong>contactpoint</strong> = {<br>
+<em>a</em>: <a href="#vec">vec</a>,<br>
+<em>b</em>: <a href="#vec">vec</a>,<br>
+<em>distance</em>: float,<br>
+} (Rfr: <a href="http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/structcp_contact_point_set.html">cpContactPointSet</a>)</span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glmath_compat">GLMATH compatibility</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As an option, it is possible to instruct MoonChipmunk to return vectors, matrices, boxes, and colors
+as <a href="https://github.com/stetre/moonglmath">MoonGLMATH</a> types, instead of returning them as plain tables
+(which is the default).
+<sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>In particular, when this functionality is enabled, functions and methods will return values
+of the following MoonGLMATH types: <strong>vec2</strong> instead of <a href="#vec"><strong>vec</strong></a>, <strong>mat2x3</strong> instead of <a href="#mat"><strong>mat</strong></a>, <strong>box2</strong> instead of <a href="#bb"><strong>bb</strong></a>, and <strong>vec4</strong> instead of <a href="#color"><strong>color</strong></a>.</p>
+</div>
+<div class="paragraph">
+<p>(Notice that for function arguments nothing changes, since the above MoonGLMATH types are compatible
+with the corresponding plain tables used by default, thus they can be used as function arguments in
+any case).</p>
+</div>
+<div class="paragraph">
+<p>Use the following functions to control GLMATH compatibility:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>glmath_compat</strong>(<em>boolean</em>)<br>
+<span class="small">Enables/disables GLMATH compatibility (which by default is disabled).<br>
+Enabling this functionality requires MoonGLMATH to be installed.</span></p>
+</li>
+<li>
+<p><em>boolean</em> = <strong>is_glmath_compat</strong>( )<br>
+<span class="small">Returns <em>true</em> if GLMATH compatibility is enabled.</span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="toolbox">Toolbox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>@@ TODO: document moonchipmunk/toolbox.lua</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. This manual is written in <a href="http://www.methods.co.nz/asciidoc/">AsciiDoc</a>, rendered with <a href="http://asciidoctor.org/">AsciiDoctor</a> and a CSS from the <a href="https://github.com/asciidoctor/asciidoctor-stylesheet-factory">AsciiDoctor Stylesheet Factory</a>.
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. Objects are anchored to the Lua registry at their creation, so even if the script does not have references to an object, a reference always exists on the registry and this prevents the GC to collect it.
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. It is good practice to not leave invalid references to objects around, because they prevent the GC to collect the memory associated with the userdata.
+</div>
+<div class="footnote" id="_footnote_4">
+<a href="#_footnoteref_4">4</a>. MoonGLMATH types are convenient because they support operators and synctatic sugar, but I chose not to impose their use because one may want to use an alternative math library, or none at all.
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 0.1<br>
+Last updated 2020-04-03 09:03:53 CEST
+</div>
+</div>
+</body>
+</html>

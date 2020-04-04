@@ -1,0 +1,88 @@
+
+[[body]]
+=== Rigid bodies
+
+[small]#Rfr: http://chipmunk-physics.net/release/ChipmunkLatest-API-Reference/group__cp_body.html[cpBody].#
+
+* _body_ = *body_new*(_mass_, _moment_) +
+_body_ = *body_new_kinematic*( ) +
+_body_ = *body_new_static*( ) +
+_body_++:++*free*( ) +
+[small]#Create/delete a rigid body.#
+
+[[body_get_space]]
+* <<space, _space_>>|_nil_ = _body_++:++*get_space*( ) +
+
+[[body_set_type]]
+* _body_++:++*set_type*(_type_) +
+_type_ = _body_++:++*get_type*( ) +
+[small]#_type_: '_dynamic_' |, '_kinematic_' | '_static_'.#
+
+[[body_set_xxx]]
+* _body_++:++*set_mass*(_value_) +
+_body_++:++*set_moment*(_value_) +
+_body_++:++*set_angle*(_value_) +
+_body_++:++*set_angular_velocity*(_value_) +
+_body_++:++*set_torque*(_value_) +
+_value_ = _body_++:++*get_mass*( ) +
+_value_ = _body_++:++*get_moment*( ) +
+_value_ = _body_++:++*get_angle*( ) +
+_value_ = _body_++:++*get_angular_velocity*( ) +
+_value_ = _body_++:++*get_torque*( ) +
+_value_ = _body_++:++*kinetic_energy*( ) +
+[small]#_value_: float. +
+Angles are in radians.#
+
+[[body_set_vec]]
+* _body_++:++*set_position*(<<vec, _vec_>>) +
+_body_++:++*set_center_of_gravity*(<<vec, _vec_>>) +
+_body_++:++*set_velocity*(<<vec, _vec_>>) +
+_body_++:++*set_force*(<<vec, _vec_>>) +
+<<vec, _vec_>> = _body_++:++*get_position*( ) +
+<<vec, _vec_>> = _body_++:++*get_center_of_gravity*( ) +
+<<vec, _vec_>> = _body_++:++*get_velocity*( ) +
+<<vec, _vec_>> = _body_++:++*get_force*( ) +
+<<vec, _vec_>> = _body_++:++*get_rotation*( )
+
+[[body_local_to_world]]
+* <<vec, _vec_>> = _body_++:++*local_to_world*(<<vec, _vec_>>) +
+<<vec, _vec_>> = _body_++:++*world_to_local*(<<vec, _vec_>>) +
+<<vec, _vec_>> = _body_++:++*get_velocity_at_world_point*(<<vec, _vec_>>) +
+<<vec, _vec_>> = _body_++:++*get_velocity_at_local_point*(<<vec, _vec_>>) +
+
+[[body_apply_xxx]]
+* _body_++:++*apply_force_at_world_point*(_point_, _value_) +
+_body_++:++*apply_force_at_local_point*(_point_, _value_) +
+_body_++:++*apply_impulse_at_world_point*(_point_, _value_) +
+_body_++:++*apply_impulse_at_local_point*(_point_, _value_) +
+[small]#_point_, _value_: <<vec, vec>>.#
+
+[[body_update]]
+* _body_++:++*update_position*(_dt_) +
+_body_++:++*update_velocity*(_gravity_, _damping_, _dt_) +
+_body_++:++*set_position_update_func*(_func_) +
+_body_++:++*set_velocity_update_func*(_func_) +
+[small]#_dt_, _damping_: float. +
+_gravity_: <<vec, vec>>. +
+The update callbacks are executed as follows: +
+pass:[-] position update: *func(body, dt)*. +
+pass:[-] velocity update: *func(body, gravity, damping, dt)*.#
+
+
+
+[[body_sleep]]
+* _body_++:++*sleep*( ) +
+_body_++:++*sleep_with_group*([_group_]) +
+_body_++:++*activate*( ) +
+_body_++:++*activate_static*([_filter_]) +
+_boolean_ = _body_++:++*is_sleeping*( ) +
+[small]#_group_: <<body, body>>. +
+_filter_: <<shape, shape>>.#
+
+
+[[body_each_xxx]]
+* _body_++:++*each_shape*(_func_) +
+_body_++:++*each_constraint*(_func_) +
+_body_++:++*each_arbiter*(_func_) +
+[small]#Execute _func_ as *func(body, object)* for each object of the given type.#
+
