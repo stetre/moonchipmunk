@@ -7,7 +7,7 @@ This submodule provides the tools that are used in examples and demos for render
 handling, and more.
 
 In addition to MoonChipmunk itself, the toolbox uses (and thus requires) the following
-libraries from the https://github.com/stetre/moonlibs[MoonLibs collection] collection:
+libraries from the https://github.com/stetre/moonlibs[MoonLibs collection]:
 
 * https://github.com/stetre/moongl[MoonGL]: bindings to the OpenGL API, for graphics rendering.
 * https://github.com/stetre/moonglfw[MoonGLFW]: bindings to GLFW, for window/surface creation and input handling.
