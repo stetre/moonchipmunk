@@ -14,7 +14,7 @@ _float_ elements (or arrays of arrays in the case of matrices). The meaning of t
 thus depends on their position, as detailed below, and there is no syntactic sugar 
 such as _v.x_ and _v.y_ to access them (unless one enables <<glmath_compat, GLMATH compatibility>>).
 
-A few other ChipmunkD structs are represented as string-indexed Lua tables, also described below.
+A few other Chipmunk2D structs are represented as string-indexed Lua tables, also described below.
 
 * [[vec]]
 [small]#*vec* = {_x_, _y_} +
