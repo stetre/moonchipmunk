@@ -29,6 +29,7 @@
 #include <lua.h>
 #include "lualib.h"
 #include "lauxlib.h"
+#include "compat-5.3.h"
 
 #undef CP_SPACE_DISABLE_DEBUG_API
 #include <chipmunk/chipmunk.h>

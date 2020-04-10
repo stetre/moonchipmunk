@@ -47,6 +47,7 @@ COPT	+= -O2
 #COPT	+= -m32
 COPT	+= -Wfatal-errors
 COPT	+= -Wall -Wextra -Wpedantic
+COPT	+= -DCOMPAT53_PREFIX=moonchipmunk_compat_
 COPT    += -std=gnu99
 COPT 	+= -DLUAVER=$(LUAVER)
 ifdef LINUX
