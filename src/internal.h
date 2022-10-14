@@ -49,6 +49,12 @@
 #define  moonchipmunk_
 #endif
 
+#ifdef _WIN32
+    #define MOONCHIPMUNK_EXPORT __declspec(dllexport)
+#else
+    #define MOONCHIPMUNK_EXPORT
+#endif
+
 /* flags.c */
 #define checkflags(L, arg) luaL_checkinteger((L), (arg))
 #define optflags(L, arg, defval) luaL_optinteger((L), (arg), (defval))
@@ -215,7 +221,7 @@ int newbody(lua_State *L, body_t *body, int borrowed);
 
 /* main.c */
 extern lua_State *moonchipmunk_L;
-int luaopen_moonchipmunk(lua_State *L);
+MOONCHIPMUNK_EXPORT int luaopen_moonchipmunk(lua_State *L);
 void moonchipmunk_open_enums(lua_State *L);
 void moonchipmunk_open_flags(lua_State *L);
 void moonchipmunk_open_tracing(lua_State *L);

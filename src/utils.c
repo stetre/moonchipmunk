@@ -164,7 +164,7 @@ void sleeep(double seconds)
 
 #define time_init(L) do { (void)L; /* do nothing */ } while(0)
 
-#elif defined(MINGW)
+#elif defined(_WIN32)
 
 #include <windows.h>
 
