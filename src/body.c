@@ -34,6 +34,7 @@ static void removeshape(body_t *body, shape_t *shape, void *data)
 int freebody(lua_State *L, ud_t *ud)
     {
     space_t *space;
+	cpDataPointer *ref;
     body_t *body = (body_t*)ud->handle;
     if(!IsValid(ud)) return 0;
     space = cpBodyGetSpace(body);
@@ -51,6 +52,8 @@ int freebody(lua_State *L, ud_t *ud)
             cpBodyEachShape(body, removeshape, space);
             cpSpaceRemoveBody(space, body);
             }
+        ref = cpBodyGetUserData(body);
+        if(ref) luaL_unref(L, LUA_REGISTRYINDEX, (lua_Integer)ref);
         cpBodyFree(body);
         }
     return 0;
@@ -375,6 +378,8 @@ static int SetUserData(lua_State *L)
     intptr_t ref;
     body_t *body = checkbody(L, 1, NULL);
     luaL_checktype(L, 2, LUA_TTABLE);
+    ref = (intptr_t)cpBodyGetUserData(body);
+    if(ref) luaL_unref(L, LUA_REGISTRYINDEX, (lua_Integer)ref);
     ref = luaL_ref(L, LUA_REGISTRYINDEX);
     cpBodySetUserData(body, (cpDataPointer*)ref);
     return 0;
@@ -383,9 +388,9 @@ static int SetUserData(lua_State *L)
 static int GetUserData(lua_State *L)
     {
     body_t *body = checkbody(L, 1, NULL);
-    cpDataPointer * ptr = cpBodyGetUserData(body);
-    if(!ptr) lua_pushnil(L);
-    else lua_rawgeti(L, LUA_REGISTRYINDEX, (lua_Integer)ptr);
+    cpDataPointer *ref = cpBodyGetUserData(body);
+    if(!ref) lua_pushnil(L);
+    else lua_rawgeti(L, LUA_REGISTRYINDEX, (lua_Integer)ref);
     return 1;
     }
 
