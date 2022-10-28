@@ -370,6 +370,25 @@ static int SetPositionUpdateFunc(lua_State *L)
     return 0;
     }
 
+static int SetUserData(lua_State *L)
+    {
+    intptr_t ref;
+    body_t *body = checkbody(L, 1, NULL);
+    luaL_checktype(L, 2, LUA_TTABLE);
+    ref = luaL_ref(L, LUA_REGISTRYINDEX);
+    cpBodySetUserData(body, (cpDataPointer*)ref);
+    return 0;
+    }
+
+static int GetUserData(lua_State *L)
+    {
+    body_t *body = checkbody(L, 1, NULL);
+    cpDataPointer * ptr = cpBodyGetUserData(body);
+    if(!ptr) lua_pushnil(L);
+    else lua_rawgeti(L, LUA_REGISTRYINDEX, (lua_Integer)ptr);
+    return 1;
+    }
+
 RAW_FUNC(body)
 PARENT_FUNC(body)
 DESTROY_FUNC(body)
@@ -423,6 +442,8 @@ static const struct luaL_Reg Methods[] =
         { "each_arbiter", EachArbiter },
         { "set_velocity_update_func", SetVelocityUpdateFunc },
         { "set_position_update_func", SetPositionUpdateFunc },
+        { "set_user_data", SetUserData },
+        { "get_user_data", GetUserData },
         { NULL, NULL } /* sentinel */
     };
 
@@ -445,8 +466,3 @@ void moonchipmunk_open_body(lua_State *L)
     udata_define(L, BODY_MT, Methods, MetaMethods);
     luaL_setfuncs(L, Functions, 0);
     }
-
-#if 0
-// void cpBodySetUserData(body_t *body, cpDataPointer userData);
-// cpDataPointer cpBodyGetUserData(const body_t *body);
-#endif
