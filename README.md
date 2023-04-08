@@ -2,7 +2,7 @@
 
 MoonChipmunk is a Lua binding library for Scott Lembcke's [Chipmunk2D](http://chipmunk-physics.net/) physics engine.
 
-It runs on GNU/Linux <!-- and on Windows (MSYS2/MinGW) --> and requires 
+It runs on GNU/Linux and on Windows (MSYS2/MinGW) and requires
 [Lua](http://www.lua.org/) (>=5.3) and [Chipmunk2D](http://chipmunk-physics.net/downloads.php) (>= 7.0.3).
 
 _Author:_ _[Stefano Trettel](https://www.linkedin.com/in/stetre)_

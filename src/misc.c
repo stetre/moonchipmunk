@@ -433,6 +433,7 @@ static int ClosestPointOnSegment(lua_State *L)
     return 1;
     }
 
+#if 0
 static int CheckPointGreater(lua_State *L)
     {
     vec_t a, b, c;
@@ -453,6 +454,7 @@ static int CheckAxis(lua_State *L)
     lua_pushboolean(L, cpCheckAxis(v0, v1, p, n));
     return 1;
     }
+#endif
 
 /*------------------------------------------------------------------------------*
  | mat_t functions (cpTransformXxx())                                           |
@@ -909,8 +911,10 @@ static const struct luaL_Reg Functions[] =
         { "vdistsq", Vdistsq },
         { "vnear", Vnear },
         { "closest_point_on_segment", ClosestPointOnSegment },
+#if 0
         { "check_point_greater", CheckPointGreater },
         { "check_axis", CheckAxis },
+#endif
         //----- cpTransformXxx() ---------------------------------------
         { "transform_identity", TransformIdentity },
         { "transform_new", TransformNew },

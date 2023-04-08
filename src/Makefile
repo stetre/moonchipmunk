@@ -37,7 +37,7 @@ ifdef LINUX
 LIBS =  -lchipmunk -lpthread
 endif
 ifdef MINGW
-LIBS = -llua
+LIBS = -lchipmunk -llua
 endif
 
 Tgt	:= moonchipmunk
